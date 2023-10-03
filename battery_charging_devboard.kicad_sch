@@ -1,0 +1,48 @@
+(kicad_sch (version 20230121) (generator eeschema)
+
+  (uuid 451b7129-01d5-46cf-a4e9-c4e0c27ff0b6)
+
+  (paper "A4")
+
+  (lib_symbols
+  )
+
+
+  (sheet (at 114.935 33.02) (size 57.785 34.29) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 3f979316-be3a-41d8-ba6a-e463eef07ed8)
+    (property "Sheetname" "battery_charger" (at 114.935 32.3084 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "battery_charger.kicad_sch" (at 114.935 67.8946 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battery_charging_devboard"
+        (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6" (page "3"))
+      )
+    )
+  )
+
+  (sheet (at 35.56 33.02) (size 51.435 33.655) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid beffddf7-e895-42d7-ba8a-5d365171da10)
+    (property "Sheetname" "usb_input" (at 35.56 32.3084 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "usb_input.kicad_sch" (at 35.56 67.2596 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battery_charging_devboard"
+        (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6" (page "2"))
+      )
+    )
+  )
+
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+)
