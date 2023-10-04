@@ -479,6 +479,10 @@
     [
       "3f979316-be3a-41d8-ba6a-e463eef07ed8",
       "battery_charger"
+    ],
+    [
+      "1280b247-77a5-41dc-aedd-06ed6191fea4",
+      "microcontroller"
     ]
   ],
   "text_variables": {}

@@ -8,6 +8,23 @@
   )
 
 
+  (sheet (at 198.755 32.385) (size 59.69 34.29) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 1280b247-77a5-41dc-aedd-06ed6191fea4)
+    (property "Sheetname" "microcontroller" (at 198.755 31.6734 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "microcontroller.kicad_sch" (at 198.755 67.2596 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battery_charging_devboard"
+        (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6" (page "4"))
+      )
+    )
+  )
+
   (sheet (at 114.935 33.02) (size 57.785 34.29) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
