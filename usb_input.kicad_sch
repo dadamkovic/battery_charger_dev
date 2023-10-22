@@ -1198,6 +1198,7 @@
   )
 
   (no_connect (at 225.425 175.26) (uuid 155e8780-446e-472a-98bf-6c4c0fbd7f80))
+  (no_connect (at 249.555 121.92) (uuid 26d12a2d-943d-4a22-bdd1-0c4803f8f7df))
   (no_connect (at 228.6 112.395) (uuid 4c9ea26a-1298-4b13-b8f9-d46001aa9883))
   (no_connect (at 220.98 112.395) (uuid 5835072d-eb3c-4f84-9cd5-a0a1cea807cf))
   (no_connect (at 220.98 78.105) (uuid 880bbcfe-eba3-4f8d-a8ca-0c4410bfe33d))
@@ -1982,10 +1983,6 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 7171870c-d19b-4d45-a7cf-359eb2b01cc3)
   )
-  (label "VDDD_3V3" (at 169.545 144.145 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right bottom))
-    (uuid 9507d260-fe2f-4af2-9f63-0e8bf017a011)
-  )
   (label "VDDD_3V3" (at 255.27 175.26 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid b57e9c01-f803-4637-a90a-f677e416eb84)
@@ -2014,6 +2011,13 @@
     (uuid 87c2671d-06ce-4f24-ae20-130da572323c)
     (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 359.6776 148.59 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
+    )
+  )
+  (global_label "VREG_3V3" (shape input) (at 169.545 144.145 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid 8ea566c3-e044-4cd3-98ac-14c9361be770)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 157.3864 144.145 0)
+      (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
   (global_label "USB_C_D+" (shape bidirectional) (at 134.62 140.97 0) (fields_autoplaced)
@@ -2069,7 +2073,7 @@
   (symbol (lib_id "Device:R_Small") (at 209.55 191.135 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 013ed616-b968-45eb-b022-ac1fafabe906)
-    (property "Reference" "R3" (at 203.2 189.865 0)
+    (property "Reference" "R13" (at 203.2 189.865 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "5.1k" (at 203.2 192.405 0)
@@ -2086,7 +2090,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R3") (unit 1)
+          (reference "R13") (unit 1)
         )
       )
     )
@@ -2095,7 +2099,7 @@
   (symbol (lib_id "Device:R_Small") (at 247.015 180.34 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 03f0163b-9f7a-4a43-9fae-0416314e5d43)
-    (property "Reference" "R8" (at 248.92 179.705 0)
+    (property "Reference" "R18" (at 248.92 179.705 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "0k" (at 248.92 182.245 0)
@@ -2112,7 +2116,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R8") (unit 1)
+          (reference "R18") (unit 1)
         )
       )
     )
@@ -2121,7 +2125,7 @@
   (symbol (lib_id "User_USB_C_PD:CYPD3177") (at 228.6 123.825 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 067ed5c4-aac2-43a3-aa2e-585a1c18e0de)
-    (property "Reference" "U2" (at 238.1759 114.935 0)
+    (property "Reference" "U7" (at 238.1759 114.935 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "CYPD3177" (at 238.1759 117.475 0)
@@ -2166,7 +2170,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "U2") (unit 1)
+          (reference "U7") (unit 1)
         )
       )
     )
@@ -2205,7 +2209,7 @@
   (symbol (lib_id "Device:C_Small") (at 232.41 95.885 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0d98f3ad-d18b-41aa-a1e3-cc31bc7ec6f6)
-    (property "Reference" "C1" (at 234.95 95.2563 0)
+    (property "Reference" "C3" (at 234.95 95.2563 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1u" (at 234.95 97.7963 0)
@@ -2222,7 +2226,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "C1") (unit 1)
+          (reference "C3") (unit 1)
         )
       )
     )
@@ -2231,7 +2235,7 @@
   (symbol (lib_id "Device:R_Small") (at 177.165 144.145 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 167b3393-d832-4b6d-b1e2-c18fb75f5d2f)
-    (property "Reference" "R1" (at 177.165 139.065 90)
+    (property "Reference" "R23" (at 177.165 139.065 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "4.7K" (at 177.165 141.605 90)
@@ -2248,7 +2252,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R1") (unit 1)
+          (reference "R23") (unit 1)
         )
       )
     )
@@ -2257,7 +2261,7 @@
   (symbol (lib_id "Device:R_Small") (at 285.115 118.745 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 1fbdd96d-21aa-437f-ab22-1e9e620f29d7)
-    (property "Reference" "R13" (at 287.655 118.11 0)
+    (property "Reference" "R28" (at 287.655 118.11 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "2.2k" (at 287.655 120.65 0)
@@ -2274,7 +2278,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R13") (unit 1)
+          (reference "R28") (unit 1)
         )
       )
     )
@@ -2283,7 +2287,7 @@
   (symbol (lib_id "Device:D_Schottky") (at 254 41.275 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 216f1cd5-cf9b-462e-b56f-1a6ad142405b)
-    (property "Reference" "D11" (at 254.3175 35.56 0)
+    (property "Reference" "D2" (at 254.3175 35.56 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "SBR8M" (at 254.3175 38.1 0)
@@ -2306,7 +2310,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "D11") (unit 1)
+          (reference "D2") (unit 1)
         )
       )
     )
@@ -2315,7 +2319,7 @@
   (symbol (lib_id "Device:R_Small") (at 207.01 106.045 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 22f07ffd-96d9-4ebb-925e-2b2d55e38106)
-    (property "Reference" "R17" (at 200.66 104.775 0)
+    (property "Reference" "R1" (at 200.66 104.775 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 200.66 107.315 0)
@@ -2332,7 +2336,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R17") (unit 1)
+          (reference "R1") (unit 1)
         )
       )
     )
@@ -2341,7 +2345,7 @@
   (symbol (lib_id "Device:R_Small") (at 281.94 83.185 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 24a73fbf-1e4e-4723-8951-b601cb962f58)
-    (property "Reference" "R46" (at 285.115 83.185 90)
+    (property "Reference" "R14" (at 285.115 83.185 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 287.655 83.185 90)
@@ -2358,7 +2362,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R46") (unit 1)
+          (reference "R14") (unit 1)
         )
       )
     )
@@ -2393,7 +2397,7 @@
           (reference "D4") (unit 1)
         )
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "D10") (unit 1)
+          (reference "D1") (unit 1)
         )
       )
     )
@@ -2402,7 +2406,7 @@
   (symbol (lib_id "Device:C_Small") (at 241.3 95.885 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2ba7515a-29b5-48d8-a0f3-67a8bbb020bf)
-    (property "Reference" "C2" (at 243.84 95.2563 0)
+    (property "Reference" "C1" (at 243.84 95.2563 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "0.1u" (at 243.84 97.7963 0)
@@ -2419,7 +2423,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "C2") (unit 1)
+          (reference "C1") (unit 1)
         )
       )
     )
@@ -2518,7 +2522,7 @@
   (symbol (lib_id "Device:R_Small") (at 221.615 191.135 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 38efb9b1-d7f5-43bd-8a64-9aba3c6c1a70)
-    (property "Reference" "R5" (at 215.265 189.865 0)
+    (property "Reference" "R20" (at 215.265 189.865 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "5.1k" (at 215.265 192.405 0)
@@ -2535,7 +2539,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R5") (unit 1)
+          (reference "R20") (unit 1)
         )
       )
     )
@@ -2604,7 +2608,7 @@
   (symbol (lib_id "Device:R_Small") (at 247.015 191.135 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4d86b3bd-04b3-46f8-8309-e0b33a3908b2)
-    (property "Reference" "R9" (at 248.92 190.5 0)
+    (property "Reference" "R27" (at 248.92 190.5 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "5.1k" (at 248.92 193.04 0)
@@ -2621,7 +2625,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R9") (unit 1)
+          (reference "R27") (unit 1)
         )
       )
     )
@@ -2630,7 +2634,7 @@
   (symbol (lib_id "Device:R_Small") (at 275.59 118.745 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4f4084d8-114b-43e9-bfe2-997ca2fd7cb7)
-    (property "Reference" "R12" (at 278.13 118.11 0)
+    (property "Reference" "R24" (at 278.13 118.11 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "2.2k" (at 278.13 120.65 0)
@@ -2647,7 +2651,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R12") (unit 1)
+          (reference "R24") (unit 1)
         )
       )
     )
@@ -2656,7 +2660,7 @@
   (symbol (lib_id "Device:C_Small") (at 190.5 154.305 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5007b167-6bd0-4b06-87bf-562c722d3107)
-    (property "Reference" "C4" (at 193.04 153.6763 0)
+    (property "Reference" "C23" (at 193.04 153.6763 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1u" (at 193.04 156.2163 0)
@@ -2673,7 +2677,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "C4") (unit 1)
+          (reference "C23") (unit 1)
         )
       )
     )
@@ -2812,7 +2816,7 @@
   (symbol (lib_id "Device:R_Small") (at 340.995 158.75 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 59d6af5b-e347-49b7-b5ad-e5a60d10bb6c)
-    (property "Reference" "R11" (at 342.9 158.115 0)
+    (property "Reference" "R21" (at 342.9 158.115 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "5.1k" (at 342.9 160.655 0)
@@ -2829,7 +2833,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R11") (unit 1)
+          (reference "R21") (unit 1)
         )
       )
     )
@@ -2838,7 +2842,7 @@
   (symbol (lib_id "Device:C_Small") (at 157.48 127 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5aa1bf46-59cb-406f-a39c-ffadfcc42fb3)
-    (property "Reference" "C5" (at 160.02 126.3713 0)
+    (property "Reference" "C4" (at 160.02 126.3713 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "3.3u" (at 160.02 128.9113 0)
@@ -2855,7 +2859,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "C5") (unit 1)
+          (reference "C4") (unit 1)
         )
       )
     )
@@ -2894,7 +2898,7 @@
   (symbol (lib_id "Device:R_Small") (at 220.98 95.885 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 77017684-7e11-47b8-b3f3-16823909570d)
-    (property "Reference" "R16" (at 214.63 94.615 0)
+    (property "Reference" "R2" (at 214.63 94.615 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1k" (at 214.63 97.155 0)
@@ -2911,7 +2915,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R16") (unit 1)
+          (reference "R2") (unit 1)
         )
       )
     )
@@ -2920,7 +2924,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 257.175 144.78 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7d9b4f82-b600-4f3d-a7d4-aac856cea7b6)
-    (property "Reference" "TP1" (at 262.89 144.145 90)
+    (property "Reference" "TP3" (at 262.89 144.145 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "HPI_INT" (at 262.89 146.685 90)
@@ -2936,7 +2940,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "TP1") (unit 1)
+          (reference "TP3") (unit 1)
         )
       )
     )
@@ -2945,7 +2949,7 @@
   (symbol (lib_id "Device:R_Small") (at 235.585 180.34 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 83c1724c-7f78-4a6b-ad8d-89c770832f45)
-    (property "Reference" "R6" (at 237.49 179.705 0)
+    (property "Reference" "R16" (at 237.49 179.705 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "5.1k" (at 237.49 182.245 0)
@@ -2962,7 +2966,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R6") (unit 1)
+          (reference "R16") (unit 1)
         )
       )
     )
@@ -3009,7 +3013,7 @@
   (symbol (lib_id "Device:C_Small") (at 250.19 95.885 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8995eeb9-d1d0-43ab-9eee-ab5abd223bf5)
-    (property "Reference" "C3" (at 252.73 95.2563 0)
+    (property "Reference" "C8" (at 252.73 95.2563 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "0.1u" (at 252.73 97.7963 0)
@@ -3026,7 +3030,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "C3") (unit 1)
+          (reference "C8") (unit 1)
         )
       )
     )
@@ -3035,7 +3039,7 @@
   (symbol (lib_id "Device:R_Small") (at 209.55 180.34 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8a3794a5-e124-4dd4-a325-aaad70f0819e)
-    (property "Reference" "R2" (at 203.2 179.07 0)
+    (property "Reference" "R19" (at 203.2 179.07 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "5.1k" (at 203.2 181.61 0)
@@ -3052,7 +3056,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R2") (unit 1)
+          (reference "R19") (unit 1)
         )
       )
     )
@@ -3061,7 +3065,7 @@
   (symbol (lib_id "Device:LED") (at 281.94 92.075 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8d4a403b-4700-4ea2-a56c-bfc25898618f)
-    (property "Reference" "D8" (at 288.29 91.44 0)
+    (property "Reference" "D5" (at 288.29 91.44 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "LED" (at 285.75 91.44 0)
@@ -3078,7 +3082,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "D8") (unit 1)
+          (reference "D5") (unit 1)
         )
       )
     )
@@ -3087,7 +3091,7 @@
   (symbol (lib_id "Device:R_Small") (at 180.34 53.975 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8f2de618-e388-442d-a9e6-6639d90a09b0)
-    (property "Reference" "R14" (at 173.99 52.705 0)
+    (property "Reference" "R4" (at 173.99 52.705 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "49.9k" (at 173.99 55.245 0)
@@ -3104,7 +3108,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R14") (unit 1)
+          (reference "R4") (unit 1)
         )
       )
     )
@@ -3138,7 +3142,7 @@
   (symbol (lib_id "User_MOSFET:T2N7002AK,LM") (at 289.56 159.385 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 93b41306-4e62-430c-87db-799bd2d0ada5)
-    (property "Reference" "U4" (at 292.1 160.655 0)
+    (property "Reference" "U8" (at 292.1 160.655 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "T2N7002AK" (at 292.1 163.195 0)
@@ -3162,7 +3166,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "U4") (unit 1)
+          (reference "U8") (unit 1)
         )
       )
     )
@@ -3171,7 +3175,7 @@
   (symbol (lib_id "Device:R_Small") (at 313.69 154.94 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 97864894-6c85-45f3-bdc5-231f590f4009)
-    (property "Reference" "R10" (at 313.69 158.115 90)
+    (property "Reference" "R17" (at 313.69 158.115 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "2k" (at 313.69 160.655 90)
@@ -3188,7 +3192,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R10") (unit 1)
+          (reference "R17") (unit 1)
         )
       )
     )
@@ -3258,7 +3262,7 @@
   (symbol (lib_id "Device:Q_Dual_PMOS_S1G1S2G2D2D2D1D1") (at 201.295 47.625 270) (mirror x) (unit 2)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a65674e2-784d-4ae3-b9f9-06bb683d2f77)
-    (property "Reference" "Q5" (at 201.295 39.37 90)
+    (property "Reference" "Q2" (at 201.295 39.37 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "DMP3036SSD" (at 201.295 41.91 90)
@@ -3287,7 +3291,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "Q5") (unit 2)
+          (reference "Q2") (unit 2)
         )
       )
     )
@@ -3326,7 +3330,7 @@
   (symbol (lib_id "Connector:TestPoint") (at 262.255 73.66 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b1ae3afc-29d3-4610-a3c4-18dea2eedecd)
-    (property "Reference" "TP2" (at 264.795 69.723 0)
+    (property "Reference" "TP1" (at 264.795 69.723 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "HPI_INT" (at 264.795 72.263 0)
@@ -3342,7 +3346,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "TP2") (unit 1)
+          (reference "TP1") (unit 1)
         )
       )
     )
@@ -3381,7 +3385,7 @@
   (symbol (lib_id "Device:R_Small") (at 221.615 180.34 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c90ca144-e2fc-445a-996a-ae264a000893)
-    (property "Reference" "R4" (at 215.265 179.07 0)
+    (property "Reference" "R15" (at 215.265 179.07 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "N/A" (at 215.265 181.61 0)
@@ -3398,7 +3402,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R4") (unit 1)
+          (reference "R15") (unit 1)
         )
       )
     )
@@ -3407,7 +3411,7 @@
   (symbol (lib_id "Device:C_Small") (at 152.4 53.975 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid cf435451-5991-4cd6-ad27-1621cbdd0b71)
-    (property "Reference" "C6" (at 154.94 53.3463 0)
+    (property "Reference" "C2" (at 154.94 53.3463 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1u" (at 154.94 55.8863 0)
@@ -3424,7 +3428,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "C6") (unit 1)
+          (reference "C2") (unit 1)
         )
       )
     )
@@ -3463,7 +3467,7 @@
   (symbol (lib_id "Device:C_Small") (at 214.63 53.975 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d8289469-5bfc-412d-909d-7cfebd83a2f8)
-    (property "Reference" "C7" (at 217.17 53.3463 0)
+    (property "Reference" "C5" (at 217.17 53.3463 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1u" (at 217.17 55.8863 0)
@@ -3480,7 +3484,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "C7") (unit 1)
+          (reference "C5") (unit 1)
         )
       )
     )
@@ -3519,7 +3523,7 @@
   (symbol (lib_id "Device:R_Small") (at 276.225 167.005 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid dbcc6420-9f18-406e-bce1-39c1e1fb1431)
-    (property "Reference" "R19" (at 279.4 167.005 90)
+    (property "Reference" "R26" (at 279.4 167.005 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "50k" (at 281.94 167.005 90)
@@ -3536,7 +3540,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R19") (unit 1)
+          (reference "R26") (unit 1)
         )
       )
     )
@@ -3545,7 +3549,7 @@
   (symbol (lib_id "Device:LED") (at 302.895 154.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e394e60e-170c-4442-8040-c5bb8c23eca1)
-    (property "Reference" "D1" (at 302.895 152.4 0)
+    (property "Reference" "D6" (at 302.895 152.4 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "LED" (at 302.895 149.86 0)
@@ -3562,7 +3566,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "D1") (unit 1)
+          (reference "D6") (unit 1)
         )
       )
     )
@@ -3571,7 +3575,7 @@
   (symbol (lib_id "Device:R_Small") (at 235.585 191.135 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e9bbc79c-3eda-4125-b444-7fc64ae27542)
-    (property "Reference" "R7" (at 237.49 190.5 0)
+    (property "Reference" "R22" (at 237.49 190.5 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "5.1k" (at 237.49 193.04 0)
@@ -3588,7 +3592,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R7") (unit 1)
+          (reference "R22") (unit 1)
         )
       )
     )
@@ -3597,7 +3601,7 @@
   (symbol (lib_id "Device:Q_Dual_PMOS_S1G1S2G2D2D2D1D1") (at 166.37 47.625 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f043ce08-aa35-4e6c-86b7-b212c08f1c6c)
-    (property "Reference" "Q5" (at 166.37 38.735 90)
+    (property "Reference" "Q2" (at 166.37 38.735 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "DMP3036SSD" (at 166.37 41.275 90)
@@ -3626,7 +3630,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "Q5") (unit 1)
+          (reference "Q2") (unit 1)
         )
       )
     )
@@ -3635,7 +3639,7 @@
   (symbol (lib_id "Device:R_Small") (at 146.685 53.975 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f1c0d6d0-df42-421a-be82-b650d47f75d7)
-    (property "Reference" "R15" (at 140.335 52.705 0)
+    (property "Reference" "R5" (at 140.335 52.705 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10k" (at 140.335 55.245 0)
@@ -3652,7 +3656,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R15") (unit 1)
+          (reference "R5") (unit 1)
         )
       )
     )
@@ -3661,7 +3665,7 @@
   (symbol (lib_id "Device:R_Small") (at 162.56 85.09 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f9e8669f-6467-4077-b64a-e7c5af78dd33)
-    (property "Reference" "R18" (at 156.21 83.82 0)
+    (property "Reference" "R3" (at 156.21 83.82 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "49.9k" (at 156.21 86.36 0)
@@ -3678,7 +3682,7 @@
     (instances
       (project "battery_charging_devboard"
         (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6/beffddf7-e895-42d7-ba8a-5d365171da10"
-          (reference "R18") (unit 1)
+          (reference "R3") (unit 1)
         )
       )
     )
