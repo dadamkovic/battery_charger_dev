@@ -1,0 +1,822 @@
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"smbus.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "SMBus_PMBus_Stack/Target/smbus.c"
+  18              		.section	.text.MX_STACK_SMBUS_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	MX_STACK_SMBUS_Init
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	MX_STACK_SMBUS_Init:
+  26              	.LFB40:
+   1:SMBus_PMBus_Stack/Target/smbus.c **** 
+   2:SMBus_PMBus_Stack/Target/smbus.c **** /* USER CODE BEGIN Header */
+   3:SMBus_PMBus_Stack/Target/smbus.c **** /**
+   4:SMBus_PMBus_Stack/Target/smbus.c ****   ******************************************************************************
+   5:SMBus_PMBus_Stack/Target/smbus.c ****   * @file    smbus.c
+   6:SMBus_PMBus_Stack/Target/smbus.c ****   * @brief   This file provides code for the configuration
+   7:SMBus_PMBus_Stack/Target/smbus.c ****   *          of the I2C instances.
+   8:SMBus_PMBus_Stack/Target/smbus.c ****   ******************************************************************************
+   9:SMBus_PMBus_Stack/Target/smbus.c ****   * @attention
+  10:SMBus_PMBus_Stack/Target/smbus.c ****   *
+  11:SMBus_PMBus_Stack/Target/smbus.c ****   * Copyright (c) 2022 STMicroelectronics.
+  12:SMBus_PMBus_Stack/Target/smbus.c ****   * All rights reserved.
+  13:SMBus_PMBus_Stack/Target/smbus.c ****   *
+  14:SMBus_PMBus_Stack/Target/smbus.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  15:SMBus_PMBus_Stack/Target/smbus.c ****   * in the root directory of this software component.
+  16:SMBus_PMBus_Stack/Target/smbus.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  17:SMBus_PMBus_Stack/Target/smbus.c ****   *
+  18:SMBus_PMBus_Stack/Target/smbus.c ****   ******************************************************************************
+  19:SMBus_PMBus_Stack/Target/smbus.c ****   */
+  20:SMBus_PMBus_Stack/Target/smbus.c **** /* USER CODE END Header */
+  21:SMBus_PMBus_Stack/Target/smbus.c **** /* Includes ------------------------------------------------------------------*/
+  22:SMBus_PMBus_Stack/Target/smbus.c **** #include "stm32_config_stack.h"
+  23:SMBus_PMBus_Stack/Target/smbus.c **** #include "stm32_PMBUS_stack.h"
+  24:SMBus_PMBus_Stack/Target/smbus.c **** #include "main.h"
+  25:SMBus_PMBus_Stack/Target/smbus.c **** 
+  26:SMBus_PMBus_Stack/Target/smbus.c ****  /* ARP */
+  27:SMBus_PMBus_Stack/Target/smbus.c **** 
+  28:SMBus_PMBus_Stack/Target/smbus.c **** /* USER CODE BEGIN 0 */
+  29:SMBus_PMBus_Stack/Target/smbus.c **** 
+  30:SMBus_PMBus_Stack/Target/smbus.c **** /* USER CODE END 0 */
+  31:SMBus_PMBus_Stack/Target/smbus.c **** 
+  32:SMBus_PMBus_Stack/Target/smbus.c **** SMBUS_StackHandleTypeDef context;
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 2
+
+
+  33:SMBus_PMBus_Stack/Target/smbus.c **** SMBUS_StackHandleTypeDef *pcontext;
+  34:SMBus_PMBus_Stack/Target/smbus.c **** #define SMBUS_HANDLE_instance hsmbus1
+  35:SMBus_PMBus_Stack/Target/smbus.c **** extern SMBUS_HandleTypeDef SMBUS_HANDLE_instance;
+  36:SMBus_PMBus_Stack/Target/smbus.c **** 
+  37:SMBus_PMBus_Stack/Target/smbus.c **** /* stack init function */
+  38:SMBus_PMBus_Stack/Target/smbus.c **** void MX_STACK_SMBUS_Init(void)
+  39:SMBus_PMBus_Stack/Target/smbus.c **** {
+  27              		.loc 1 39 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+  34              		.cfi_offset 14, -4
+  40:SMBus_PMBus_Stack/Target/smbus.c **** 
+  41:SMBus_PMBus_Stack/Target/smbus.c ****   /* USER CODE BEGIN SMBUS_Init 0 */
+  42:SMBus_PMBus_Stack/Target/smbus.c **** 
+  43:SMBus_PMBus_Stack/Target/smbus.c ****   /* USER CODE END SMBUS_Init 0 */
+  44:SMBus_PMBus_Stack/Target/smbus.c **** 
+  45:SMBus_PMBus_Stack/Target/smbus.c ****   /* USER CODE BEGIN SMBUS_Init 1 */
+  46:SMBus_PMBus_Stack/Target/smbus.c **** 
+  47:SMBus_PMBus_Stack/Target/smbus.c ****   /* USER CODE END SMBUS_Init 1 */
+  48:SMBus_PMBus_Stack/Target/smbus.c **** 
+  49:SMBus_PMBus_Stack/Target/smbus.c ****   context.CMD_table = (st_command_t *) & PMBUS_COMMANDS_TAB[0];
+  35              		.loc 1 49 3 view .LVU1
+  36              		.loc 1 49 21 is_stmt 0 view .LVU2
+  37 0002 0E48     		ldr	r0, .L4
+  38 0004 0E4B     		ldr	r3, .L4+4
+  39 0006 0361     		str	r3, [r0, #16]
+  50:SMBus_PMBus_Stack/Target/smbus.c ****   context.CMD_tableSize = PMBUS_COMMANDS_TAB_SIZE;
+  40              		.loc 1 50 3 is_stmt 1 view .LVU3
+  41              		.loc 1 50 25 is_stmt 0 view .LVU4
+  42 0008 A423     		movs	r3, #164
+  43 000a 4361     		str	r3, [r0, #20]
+  51:SMBus_PMBus_Stack/Target/smbus.c ****   context.Device = &SMBUS_HANDLE_instance;
+  44              		.loc 1 51 3 is_stmt 1 view .LVU5
+  45              		.loc 1 51 18 is_stmt 0 view .LVU6
+  46 000c 0D4B     		ldr	r3, .L4+8
+  47 000e 4360     		str	r3, [r0, #4]
+  52:SMBus_PMBus_Stack/Target/smbus.c ****   context.SRByte = 0x55U;
+  48              		.loc 1 52 3 is_stmt 1 view .LVU7
+  49              		.loc 1 52 18 is_stmt 0 view .LVU8
+  50 0010 2222     		movs	r2, #34
+  51 0012 5521     		movs	r1, #85
+  52 0014 8154     		strb	r1, [r0, r2]
+  53:SMBus_PMBus_Stack/Target/smbus.c ****   context.CurrentCommand = NULL;
+  53              		.loc 1 53 3 is_stmt 1 view .LVU9
+  54              		.loc 1 53 26 is_stmt 0 view .LVU10
+  55 0016 0022     		movs	r2, #0
+  56 0018 C260     		str	r2, [r0, #12]
+  54:SMBus_PMBus_Stack/Target/smbus.c **** 
+  55:SMBus_PMBus_Stack/Target/smbus.c ****   /* In SMBUS 10-bit addressing is reserved for future use */
+  56:SMBus_PMBus_Stack/Target/smbus.c ****   assert_param(SMBUS_HANDLE_instance.Init.AddressingMode == SMBUS_ADDRESSINGMODE_7BIT);
+  57              		.loc 1 56 3 is_stmt 1 view .LVU11
+  57:SMBus_PMBus_Stack/Target/smbus.c ****   context.OwnAddress = SMBUS_HANDLE_instance.Init.OwnAddress1;
+  58              		.loc 1 57 3 view .LVU12
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 3
+
+
+  59              		.loc 1 57 50 is_stmt 0 view .LVU13
+  60 001a DA68     		ldr	r2, [r3, #12]
+  61              		.loc 1 57 22 view .LVU14
+  62 001c 2023     		movs	r3, #32
+  63 001e C254     		strb	r2, [r0, r3]
+  58:SMBus_PMBus_Stack/Target/smbus.c ****   /* Address resolved state */
+  59:SMBus_PMBus_Stack/Target/smbus.c ****   context.StateMachine = SMBUS_SMS_ARP_AR;
+  64              		.loc 1 59 3 is_stmt 1 view .LVU15
+  65              		.loc 1 59 24 is_stmt 0 view .LVU16
+  66 0020 8023     		movs	r3, #128
+  67 0022 9B05     		lsls	r3, r3, #22
+  68 0024 0360     		str	r3, [r0]
+  60:SMBus_PMBus_Stack/Target/smbus.c ****   /* checking the HAL host setting */
+  61:SMBus_PMBus_Stack/Target/smbus.c ****   assert_param(SMBUS_HANDLE_instance.Init.PeripheralMode == SMBUS_PERIPHERAL_MODE_SMBUS_HOST);
+  69              		.loc 1 61 3 is_stmt 1 view .LVU17
+  62:SMBus_PMBus_Stack/Target/smbus.c ****   /* checking the HAL is in accord */
+  63:SMBus_PMBus_Stack/Target/smbus.c ****   assert_param(SMBUS_HANDLE_instance.Init.PacketErrorCheckMode == SMBUS_PEC_DISABLE);
+  70              		.loc 1 63 3 view .LVU18
+  64:SMBus_PMBus_Stack/Target/smbus.c ****   pcontext = &context;
+  71              		.loc 1 64 3 view .LVU19
+  72              		.loc 1 64 12 is_stmt 0 view .LVU20
+  73 0026 084B     		ldr	r3, .L4+12
+  74 0028 1860     		str	r0, [r3]
+  65:SMBus_PMBus_Stack/Target/smbus.c **** 
+  66:SMBus_PMBus_Stack/Target/smbus.c ****   if (STACK_SMBUS_Init( pcontext ) != HAL_OK)
+  75              		.loc 1 66 3 is_stmt 1 view .LVU21
+  76              		.loc 1 66 7 is_stmt 0 view .LVU22
+  77 002a FFF7FEFF 		bl	STACK_SMBUS_Init
+  78              	.LVL0:
+  79              		.loc 1 66 6 view .LVU23
+  80 002e 0028     		cmp	r0, #0
+  81 0030 00D1     		bne	.L3
+  82              	.L1:
+  67:SMBus_PMBus_Stack/Target/smbus.c ****   {
+  68:SMBus_PMBus_Stack/Target/smbus.c ****     Error_Handler();
+  69:SMBus_PMBus_Stack/Target/smbus.c ****   }
+  70:SMBus_PMBus_Stack/Target/smbus.c ****   /* USER CODE BEGIN SMBUS_Init 2 */
+  71:SMBus_PMBus_Stack/Target/smbus.c **** 
+  72:SMBus_PMBus_Stack/Target/smbus.c ****   /* USER CODE END SMBUS_Init 2 */
+  73:SMBus_PMBus_Stack/Target/smbus.c **** 
+  74:SMBus_PMBus_Stack/Target/smbus.c **** }
+  83              		.loc 1 74 1 view .LVU24
+  84              		@ sp needed
+  85 0032 10BD     		pop	{r4, pc}
+  86              	.L3:
+  68:SMBus_PMBus_Stack/Target/smbus.c ****   }
+  87              		.loc 1 68 5 is_stmt 1 view .LVU25
+  88 0034 FFF7FEFF 		bl	Error_Handler
+  89              	.LVL1:
+  90              		.loc 1 74 1 is_stmt 0 view .LVU26
+  91 0038 FBE7     		b	.L1
+  92              	.L5:
+  93 003a C046     		.align	2
+  94              	.L4:
+  95 003c 00000000 		.word	context
+  96 0040 00000000 		.word	PMBUS_COMMANDS_TAB
+  97 0044 00000000 		.word	hsmbus1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 4
+
+
+  98 0048 00000000 		.word	pcontext
+  99              		.cfi_endproc
+ 100              	.LFE40:
+ 102              		.section	.text.STACK_SMBUS_ExtendCommand,"ax",%progbits
+ 103              		.align	1
+ 104              		.weak	STACK_SMBUS_ExtendCommand
+ 105              		.syntax unified
+ 106              		.code	16
+ 107              		.thumb_func
+ 109              	STACK_SMBUS_ExtendCommand:
+ 110              	.LVL2:
+ 111              	.LFB41:
+  75:SMBus_PMBus_Stack/Target/smbus.c **** 
+  76:SMBus_PMBus_Stack/Target/smbus.c **** /**
+  77:SMBus_PMBus_Stack/Target/smbus.c ****   * @brief  Callback function notifying about extended command incoming, implementation
+  78:SMBus_PMBus_Stack/Target/smbus.c ****     is supporting extended command defined by PMBus
+  79:SMBus_PMBus_Stack/Target/smbus.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+  80:SMBus_PMBus_Stack/Target/smbus.c ****   *                the configuration information for the specified SMBUS.
+  81:SMBus_PMBus_Stack/Target/smbus.c ****   * @retval HAL_StatusTypeDef response code. Equal STACK_OK if success, any other value means probl
+  82:SMBus_PMBus_Stack/Target/smbus.c ****   */
+  83:SMBus_PMBus_Stack/Target/smbus.c **** HAL_StatusTypeDef STACK_SMBUS_ExtendCommand( SMBUS_StackHandleTypeDef *pStackContext )
+  84:SMBus_PMBus_Stack/Target/smbus.c **** {
+ 112              		.loc 1 84 1 is_stmt 1 view -0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              		.loc 1 84 1 is_stmt 0 view .LVU28
+ 117 0000 10B5     		push	{r4, lr}
+ 118              		.cfi_def_cfa_offset 8
+ 119              		.cfi_offset 4, -8
+ 120              		.cfi_offset 14, -4
+ 121 0002 0400     		movs	r4, r0
+  85:SMBus_PMBus_Stack/Target/smbus.c ****   uint16_t       size = 0U;
+ 122              		.loc 1 85 3 is_stmt 1 view .LVU29
+ 123              	.LVL3:
+  86:SMBus_PMBus_Stack/Target/smbus.c ****   uint8_t       *piobuf = NULL;
+ 124              		.loc 1 86 3 view .LVU30
+  87:SMBus_PMBus_Stack/Target/smbus.c **** 
+  88:SMBus_PMBus_Stack/Target/smbus.c ****   /* accessing the IO buffer */
+  89:SMBus_PMBus_Stack/Target/smbus.c ****   piobuf = STACK_SMBUS_GetBuffer( pStackContext );
+ 125              		.loc 1 89 3 view .LVU31
+ 126              		.loc 1 89 12 is_stmt 0 view .LVU32
+ 127 0004 FFF7FEFF 		bl	STACK_SMBUS_GetBuffer
+ 128              	.LVL4:
+  90:SMBus_PMBus_Stack/Target/smbus.c **** 
+  91:SMBus_PMBus_Stack/Target/smbus.c ****   /*
+  92:SMBus_PMBus_Stack/Target/smbus.c ****     Extended command must be identified by the value of the actual command code
+  93:SMBus_PMBus_Stack/Target/smbus.c ****    */
+  94:SMBus_PMBus_Stack/Target/smbus.c ****   switch ( piobuf[0] )
+ 129              		.loc 1 94 3 is_stmt 1 view .LVU33
+ 130              		.loc 1 94 18 is_stmt 0 view .LVU34
+ 131 0008 0378     		ldrb	r3, [r0]
+ 132              		.loc 1 94 3 view .LVU35
+ 133 000a 022B     		cmp	r3, #2
+ 134 000c 2DD0     		beq	.L7
+ 135 000e 07D8     		bhi	.L8
+ 136 0010 002B     		cmp	r3, #0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 5
+
+
+ 137 0012 0BD0     		beq	.L9
+ 138 0014 012B     		cmp	r3, #1
+ 139 0016 2CD1     		bne	.L11
+  95:SMBus_PMBus_Stack/Target/smbus.c ****   {
+  96:SMBus_PMBus_Stack/Target/smbus.c ****     case 0:
+  97:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->CurrentCommand = (st_command_t *) & EXTENDED_READ_BYTE;
+  98:SMBus_PMBus_Stack/Target/smbus.c ****       break;
+  99:SMBus_PMBus_Stack/Target/smbus.c ****     case 1:
+ 100:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->CurrentCommand = (st_command_t *) & EXTENDED_READ_WORD;
+ 140              		.loc 1 100 7 is_stmt 1 view .LVU36
+ 141              		.loc 1 100 37 is_stmt 0 view .LVU37
+ 142 0018 194B     		ldr	r3, .L17
+ 143 001a E360     		str	r3, [r4, #12]
+ 101:SMBus_PMBus_Stack/Target/smbus.c ****       break;
+ 144              		.loc 1 101 7 is_stmt 1 view .LVU38
+  85:SMBus_PMBus_Stack/Target/smbus.c ****   uint8_t       *piobuf = NULL;
+ 145              		.loc 1 85 18 is_stmt 0 view .LVU39
+ 146 001c 0022     		movs	r2, #0
+ 147              		.loc 1 101 7 view .LVU40
+ 148 001e 08E0     		b	.L13
+ 149              	.L8:
+  94:SMBus_PMBus_Stack/Target/smbus.c ****   {
+ 150              		.loc 1 94 3 view .LVU41
+ 151 0020 032B     		cmp	r3, #3
+ 152 0022 26D1     		bne	.L11
+ 102:SMBus_PMBus_Stack/Target/smbus.c ****     case 2:
+ 103:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->CurrentCommand = (st_command_t *) & EXTENDED_WRITE_BYTE;
+ 104:SMBus_PMBus_Stack/Target/smbus.c ****       /*
+ 105:SMBus_PMBus_Stack/Target/smbus.c ****         size of the bytes yet to be received
+ 106:SMBus_PMBus_Stack/Target/smbus.c ****        */
+ 107:SMBus_PMBus_Stack/Target/smbus.c ****       size = 1U;
+ 108:SMBus_PMBus_Stack/Target/smbus.c ****       break;
+ 109:SMBus_PMBus_Stack/Target/smbus.c ****     case 3:
+ 110:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->CurrentCommand = (st_command_t *) & EXTENDED_WRITE_WORD;
+ 153              		.loc 1 110 7 is_stmt 1 view .LVU42
+ 154              		.loc 1 110 37 is_stmt 0 view .LVU43
+ 155 0024 174B     		ldr	r3, .L17+4
+ 156 0026 E360     		str	r3, [r4, #12]
+ 111:SMBus_PMBus_Stack/Target/smbus.c ****       size = 2U;
+ 157              		.loc 1 111 7 is_stmt 1 view .LVU44
+ 158              	.LVL5:
+ 112:SMBus_PMBus_Stack/Target/smbus.c ****       break;
+ 159              		.loc 1 112 7 view .LVU45
+ 111:SMBus_PMBus_Stack/Target/smbus.c ****       size = 2U;
+ 160              		.loc 1 111 12 is_stmt 0 view .LVU46
+ 161 0028 0222     		movs	r2, #2
+ 162              		.loc 1 112 7 view .LVU47
+ 163 002a 02E0     		b	.L13
+ 164              	.LVL6:
+ 165              	.L9:
+  97:SMBus_PMBus_Stack/Target/smbus.c ****       break;
+ 166              		.loc 1 97 7 is_stmt 1 view .LVU48
+  97:SMBus_PMBus_Stack/Target/smbus.c ****       break;
+ 167              		.loc 1 97 37 is_stmt 0 view .LVU49
+ 168 002c 164B     		ldr	r3, .L17+8
+ 169 002e E360     		str	r3, [r4, #12]
+  98:SMBus_PMBus_Stack/Target/smbus.c ****     case 1:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 6
+
+
+ 170              		.loc 1 98 7 is_stmt 1 view .LVU50
+  85:SMBus_PMBus_Stack/Target/smbus.c ****   uint8_t       *piobuf = NULL;
+ 171              		.loc 1 85 18 is_stmt 0 view .LVU51
+ 172 0030 0022     		movs	r2, #0
+ 173              	.LVL7:
+ 174              	.L13:
+ 113:SMBus_PMBus_Stack/Target/smbus.c ****     default:
+ 114:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->StateMachine |= SMBUS_SMS_ERROR;
+ 115:SMBus_PMBus_Stack/Target/smbus.c ****       return STACK_ERROR;
+ 116:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 117:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 118:SMBus_PMBus_Stack/Target/smbus.c ****   /*
+ 119:SMBus_PMBus_Stack/Target/smbus.c ****     reading the remaining data (stack won't do that for us this time
+ 120:SMBus_PMBus_Stack/Target/smbus.c ****   */
+ 121:SMBus_PMBus_Stack/Target/smbus.c ****   if ((pStackContext->CurrentCommand->cmnd_query & WRITE) == WRITE )
+ 175              		.loc 1 121 3 is_stmt 1 view .LVU52
+ 176              		.loc 1 121 21 is_stmt 0 view .LVU53
+ 177 0032 E368     		ldr	r3, [r4, #12]
+ 178              		.loc 1 121 37 view .LVU54
+ 179 0034 5B78     		ldrb	r3, [r3, #1]
+ 180 0036 4021     		movs	r1, #64
+ 181 0038 0800     		movs	r0, r1
+ 182              	.LVL8:
+ 183              		.loc 1 121 37 view .LVU55
+ 184 003a 1840     		ands	r0, r3
+ 185              		.loc 1 121 6 view .LVU56
+ 186 003c 1942     		tst	r1, r3
+ 187 003e 13D0     		beq	.L14
+ 122:SMBus_PMBus_Stack/Target/smbus.c ****   {
+ 123:SMBus_PMBus_Stack/Target/smbus.c ****     /*
+ 124:SMBus_PMBus_Stack/Target/smbus.c ****       To make sure the executecommand is called again once the remaining data
+ 125:SMBus_PMBus_Stack/Target/smbus.c ****       is in the buffer
+ 126:SMBus_PMBus_Stack/Target/smbus.c ****     */
+ 127:SMBus_PMBus_Stack/Target/smbus.c ****     STACK_PMBUS_ExtendExecution(pStackContext);
+ 188              		.loc 1 127 5 is_stmt 1 view .LVU57
+ 189 0040 2368     		ldr	r3, [r4]
+ 190 0042 3039     		subs	r1, r1, #48
+ 191 0044 1800     		movs	r0, r3
+ 192 0046 8843     		bics	r0, r1
+ 193 0048 2060     		str	r0, [r4]
+ 128:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 129:SMBus_PMBus_Stack/Target/smbus.c ****     /*
+ 130:SMBus_PMBus_Stack/Target/smbus.c ****     PEC byte y/n?
+ 131:SMBus_PMBus_Stack/Target/smbus.c ****     */
+ 132:SMBus_PMBus_Stack/Target/smbus.c ****     if ((pStackContext->StateMachine & SMBUS_SMS_PEC_ACTIVE ) == SMBUS_SMS_PEC_ACTIVE )
+ 194              		.loc 1 132 5 view .LVU58
+ 195              		.loc 1 132 8 is_stmt 0 view .LVU59
+ 196 004a 5B01     		lsls	r3, r3, #5
+ 197 004c 01D5     		bpl	.L15
+ 133:SMBus_PMBus_Stack/Target/smbus.c ****     {
+ 134:SMBus_PMBus_Stack/Target/smbus.c ****       size += PEC_SIZE;
+ 198              		.loc 1 134 7 is_stmt 1 view .LVU60
+ 199              		.loc 1 134 12 is_stmt 0 view .LVU61
+ 200 004e 0132     		adds	r2, r2, #1
+ 201              	.LVL9:
+ 202              		.loc 1 134 12 view .LVU62
+ 203 0050 92B2     		uxth	r2, r2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 7
+
+
+ 204              	.LVL10:
+ 205              	.L15:
+ 135:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 136:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 137:SMBus_PMBus_Stack/Target/smbus.c ****     /*
+ 138:SMBus_PMBus_Stack/Target/smbus.c ****       asking the HAL for more bytes to receive
+ 139:SMBus_PMBus_Stack/Target/smbus.c ****     */
+ 140:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->Byte_count += size;
+ 206              		.loc 1 140 5 is_stmt 1 view .LVU63
+ 207              		.loc 1 140 18 is_stmt 0 view .LVU64
+ 208 0052 A38B     		ldrh	r3, [r4, #28]
+ 209              		.loc 1 140 31 view .LVU65
+ 210 0054 9B18     		adds	r3, r3, r2
+ 211 0056 A383     		strh	r3, [r4, #28]
+ 141:SMBus_PMBus_Stack/Target/smbus.c ****     HAL_SMBUS_Slave_Receive_IT( pStackContext->Device, &(pStackContext->Buffer[2]), size, SMBUS_NEX
+ 212              		.loc 1 141 5 is_stmt 1 view .LVU66
+ 213 0058 8023     		movs	r3, #128
+ 214 005a 2100     		movs	r1, r4
+ 215 005c 2531     		adds	r1, r1, #37
+ 216 005e 6068     		ldr	r0, [r4, #4]
+ 217 0060 5B04     		lsls	r3, r3, #17
+ 218 0062 FFF7FEFF 		bl	HAL_SMBUS_Slave_Receive_IT
+ 219              	.LVL11:
+ 142:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 143:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 144:SMBus_PMBus_Stack/Target/smbus.c ****   return STACK_OK;
+ 220              		.loc 1 144 10 is_stmt 0 view .LVU67
+ 221 0066 0020     		movs	r0, #0
+ 222              	.LVL12:
+ 223              	.L14:
+ 145:SMBus_PMBus_Stack/Target/smbus.c **** }
+ 224              		.loc 1 145 1 view .LVU68
+ 225              		@ sp needed
+ 226              	.LVL13:
+ 227              		.loc 1 145 1 view .LVU69
+ 228 0068 10BD     		pop	{r4, pc}
+ 229              	.LVL14:
+ 230              	.L7:
+ 103:SMBus_PMBus_Stack/Target/smbus.c ****       /*
+ 231              		.loc 1 103 7 is_stmt 1 view .LVU70
+ 103:SMBus_PMBus_Stack/Target/smbus.c ****       /*
+ 232              		.loc 1 103 37 is_stmt 0 view .LVU71
+ 233 006a 084B     		ldr	r3, .L17+12
+ 234 006c E360     		str	r3, [r4, #12]
+ 107:SMBus_PMBus_Stack/Target/smbus.c ****       break;
+ 235              		.loc 1 107 7 is_stmt 1 view .LVU72
+ 236              	.LVL15:
+ 108:SMBus_PMBus_Stack/Target/smbus.c ****     case 3:
+ 237              		.loc 1 108 7 view .LVU73
+ 107:SMBus_PMBus_Stack/Target/smbus.c ****       break;
+ 238              		.loc 1 107 12 is_stmt 0 view .LVU74
+ 239 006e 0122     		movs	r2, #1
+ 108:SMBus_PMBus_Stack/Target/smbus.c ****     case 3:
+ 240              		.loc 1 108 7 view .LVU75
+ 241 0070 DFE7     		b	.L13
+ 242              	.LVL16:
+ 243              	.L11:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 8
+
+
+ 114:SMBus_PMBus_Stack/Target/smbus.c ****       return STACK_ERROR;
+ 244              		.loc 1 114 7 is_stmt 1 view .LVU76
+ 114:SMBus_PMBus_Stack/Target/smbus.c ****       return STACK_ERROR;
+ 245              		.loc 1 114 20 is_stmt 0 view .LVU77
+ 246 0072 2268     		ldr	r2, [r4]
+ 114:SMBus_PMBus_Stack/Target/smbus.c ****       return STACK_ERROR;
+ 247              		.loc 1 114 35 view .LVU78
+ 248 0074 8023     		movs	r3, #128
+ 249 0076 9B00     		lsls	r3, r3, #2
+ 250 0078 1343     		orrs	r3, r2
+ 251 007a 2360     		str	r3, [r4]
+ 115:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 252              		.loc 1 115 7 is_stmt 1 view .LVU79
+ 115:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 253              		.loc 1 115 14 is_stmt 0 view .LVU80
+ 254 007c 0120     		movs	r0, #1
+ 255              	.LVL17:
+ 115:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 256              		.loc 1 115 14 view .LVU81
+ 257 007e F3E7     		b	.L14
+ 258              	.L18:
+ 259              		.align	2
+ 260              	.L17:
+ 261 0080 00000000 		.word	EXTENDED_READ_WORD
+ 262 0084 00000000 		.word	EXTENDED_WRITE_WORD
+ 263 0088 00000000 		.word	EXTENDED_READ_BYTE
+ 264 008c 00000000 		.word	EXTENDED_WRITE_BYTE
+ 265              		.cfi_endproc
+ 266              	.LFE41:
+ 268              		.section	.text.STACK_SMBUS_ExecuteCommand,"ax",%progbits
+ 269              		.align	1
+ 270              		.weak	STACK_SMBUS_ExecuteCommand
+ 271              		.syntax unified
+ 272              		.code	16
+ 273              		.thumb_func
+ 275              	STACK_SMBUS_ExecuteCommand:
+ 276              	.LVL18:
+ 277              	.LFB42:
+ 146:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 147:SMBus_PMBus_Stack/Target/smbus.c **** /**
+ 148:SMBus_PMBus_Stack/Target/smbus.c ****   * @brief  Callback function notifying slave about command incoming, implementation
+ 149:SMBus_PMBus_Stack/Target/smbus.c ****     is supporting extended command defined by PMBus
+ 150:SMBus_PMBus_Stack/Target/smbus.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 151:SMBus_PMBus_Stack/Target/smbus.c ****   *                the configuration information for the specified SMBUS.
+ 152:SMBus_PMBus_Stack/Target/smbus.c ****   * @retval HAL_StatusTypeDef response code. Equal STACK_OK if success, any other value means probl
+ 153:SMBus_PMBus_Stack/Target/smbus.c ****   */
+ 154:SMBus_PMBus_Stack/Target/smbus.c **** HAL_StatusTypeDef STACK_SMBUS_ExecuteCommand( SMBUS_StackHandleTypeDef *pStackContext )
+ 155:SMBus_PMBus_Stack/Target/smbus.c **** {
+ 278              		.loc 1 155 1 is_stmt 1 view -0
+ 279              		.cfi_startproc
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282              		.loc 1 155 1 is_stmt 0 view .LVU83
+ 283 0000 10B5     		push	{r4, lr}
+ 284              		.cfi_def_cfa_offset 8
+ 285              		.cfi_offset 4, -8
+ 286              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 9
+
+
+ 287 0002 0400     		movs	r4, r0
+ 156:SMBus_PMBus_Stack/Target/smbus.c ****   uint8_t       *piobuf = NULL;
+ 288              		.loc 1 156 3 is_stmt 1 view .LVU84
+ 289              	.LVL19:
+ 157:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 158:SMBus_PMBus_Stack/Target/smbus.c ****   /* accessing the IO buffer */
+ 159:SMBus_PMBus_Stack/Target/smbus.c ****   piobuf = STACK_SMBUS_GetBuffer( pStackContext );
+ 290              		.loc 1 159 3 view .LVU85
+ 291              		.loc 1 159 12 is_stmt 0 view .LVU86
+ 292 0004 FFF7FEFF 		bl	STACK_SMBUS_GetBuffer
+ 293              	.LVL20:
+ 160:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 161:SMBus_PMBus_Stack/Target/smbus.c ****   if ( piobuf == NULL )
+ 294              		.loc 1 161 3 is_stmt 1 view .LVU87
+ 295              		.loc 1 161 6 is_stmt 0 view .LVU88
+ 296 0008 0028     		cmp	r0, #0
+ 297 000a 12D0     		beq	.L25
+ 162:SMBus_PMBus_Stack/Target/smbus.c ****   {
+ 163:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->StateMachine |= SMBUS_SMS_ERROR;
+ 164:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 165:SMBus_PMBus_Stack/Target/smbus.c ****   else if ( pStackContext->CurrentCommand == (st_command_t *)&HOST_NOTIFY_PROTOCOL )
+ 298              		.loc 1 165 8 is_stmt 1 view .LVU89
+ 299              		.loc 1 165 26 is_stmt 0 view .LVU90
+ 300 000c E368     		ldr	r3, [r4, #12]
+ 301              		.loc 1 165 11 view .LVU91
+ 302 000e 134A     		ldr	r2, .L28
+ 303 0010 9342     		cmp	r3, r2
+ 304 0012 13D0     		beq	.L21
+ 166:SMBus_PMBus_Stack/Target/smbus.c ****   {
+ 167:SMBus_PMBus_Stack/Target/smbus.c ****     /* host notify command */
+ 168:SMBus_PMBus_Stack/Target/smbus.c ****     if ( pStackContext->Buffer[0] == SMBUS_ADDR_DEFAULT )
+ 169:SMBus_PMBus_Stack/Target/smbus.c ****     {
+ 170:SMBus_PMBus_Stack/Target/smbus.c ****       /* Usually the Host notify is used for ARP, but may not be limited to it */
+ 171:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 172:SMBus_PMBus_Stack/Target/smbus.c ****   /* ARP */
+ 173:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 174:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 175:SMBus_PMBus_Stack/Target/smbus.c ****   else    /* Normal device command execution */
+ 176:SMBus_PMBus_Stack/Target/smbus.c ****   {
+ 177:SMBus_PMBus_Stack/Target/smbus.c ****     /* Zone config command example implementation */
+ 178:SMBus_PMBus_Stack/Target/smbus.c ****     if ( pStackContext->CurrentCommand->cmnd_code == PMBC_ZONE_CONFIG )
+ 305              		.loc 1 178 5 is_stmt 1 view .LVU92
+ 306              		.loc 1 178 39 is_stmt 0 view .LVU93
+ 307 0014 1A78     		ldrb	r2, [r3]
+ 308              		.loc 1 178 8 view .LVU94
+ 309 0016 072A     		cmp	r2, #7
+ 310 0018 12D0     		beq	.L26
+ 179:SMBus_PMBus_Stack/Target/smbus.c ****     {
+ 180:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.writeZone = pStackContext->Buffer[1];
+ 181:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.readZone = pStackContext->Buffer[2];
+ 182:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 183:SMBus_PMBus_Stack/Target/smbus.c ****     else if ( pStackContext->CurrentCommand->cmnd_code == PMBC_ZONE_ACTIVE )
+ 311              		.loc 1 183 10 is_stmt 1 view .LVU95
+ 312              		.loc 1 183 13 is_stmt 0 view .LVU96
+ 313 001a 082A     		cmp	r2, #8
+ 314 001c 17D0     		beq	.L27
+ 315              	.L23:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 10
+
+
+ 184:SMBus_PMBus_Stack/Target/smbus.c ****     {
+ 185:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.activeWriteZone = pStackContext->Buffer[1];
+ 186:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.activeReadZone = pStackContext->Buffer[2];
+ 187:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 188:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 189:SMBus_PMBus_Stack/Target/smbus.c ****  /* PMBUS13 */
+ 190:SMBus_PMBus_Stack/Target/smbus.c ****     /*
+ 191:SMBus_PMBus_Stack/Target/smbus.c ****       first step is to see if we have a case of extended command
+ 192:SMBus_PMBus_Stack/Target/smbus.c ****     */
+ 193:SMBus_PMBus_Stack/Target/smbus.c ****     if ( pStackContext->CurrentCommand->cmnd_code == PMBC_PMBUS_COMMAND_EXT )
+ 316              		.loc 1 193 5 is_stmt 1 view .LVU97
+ 317              		.loc 1 193 39 is_stmt 0 view .LVU98
+ 318 001e 1A78     		ldrb	r2, [r3]
+ 319              		.loc 1 193 8 view .LVU99
+ 320 0020 FF2A     		cmp	r2, #255
+ 321 0022 0BD0     		beq	.L21
+ 194:SMBus_PMBus_Stack/Target/smbus.c ****     {
+ 195:SMBus_PMBus_Stack/Target/smbus.c ****       /*
+ 196:SMBus_PMBus_Stack/Target/smbus.c **** 	   implement here whatever is to be done on reception of extended command
+ 197:SMBus_PMBus_Stack/Target/smbus.c **** 	   before actually receiving the extension
+ 198:SMBus_PMBus_Stack/Target/smbus.c ****       */
+ 199:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 200:SMBus_PMBus_Stack/Target/smbus.c ****     else /* regular command case */
+ 201:SMBus_PMBus_Stack/Target/smbus.c ****     {
+ 202:SMBus_PMBus_Stack/Target/smbus.c ****       if ((pStackContext->CurrentCommand->cmnd_query & BLOCK ) == BLOCK )
+ 322              		.loc 1 202 7 is_stmt 1 view .LVU100
+ 323              		.loc 1 202 41 is_stmt 0 view .LVU101
+ 324 0024 5A78     		ldrb	r2, [r3, #1]
+ 325              		.loc 1 202 10 view .LVU102
+ 326 0026 D206     		lsls	r2, r2, #27
+ 327 0028 08D5     		bpl	.L21
+ 203:SMBus_PMBus_Stack/Target/smbus.c ****       {
+ 204:SMBus_PMBus_Stack/Target/smbus.c ****         *piobuf = (pStackContext->CurrentCommand->cmnd_master_Rx_size) - 1U;
+ 328              		.loc 1 204 9 is_stmt 1 view .LVU103
+ 329              		.loc 1 204 49 is_stmt 0 view .LVU104
+ 330 002a DB78     		ldrb	r3, [r3, #3]
+ 331              		.loc 1 204 72 view .LVU105
+ 332 002c 013B     		subs	r3, r3, #1
+ 333              		.loc 1 204 17 view .LVU106
+ 334 002e 0370     		strb	r3, [r0]
+ 335 0030 04E0     		b	.L21
+ 336              	.L25:
+ 163:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 337              		.loc 1 163 5 is_stmt 1 view .LVU107
+ 163:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 338              		.loc 1 163 18 is_stmt 0 view .LVU108
+ 339 0032 2268     		ldr	r2, [r4]
+ 163:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 340              		.loc 1 163 33 view .LVU109
+ 341 0034 8023     		movs	r3, #128
+ 342 0036 9B00     		lsls	r3, r3, #2
+ 343 0038 1343     		orrs	r3, r2
+ 344 003a 2360     		str	r3, [r4]
+ 345              	.L21:
+ 205:SMBus_PMBus_Stack/Target/smbus.c ****         /* byte size of reply for block read command */
+ 206:SMBus_PMBus_Stack/Target/smbus.c ****         /* One byte for size, rest are [size] of data */
+ 207:SMBus_PMBus_Stack/Target/smbus.c ****       }
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 11
+
+
+ 208:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 209:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 210:SMBus_PMBus_Stack/Target/smbus.c ****   return STACK_OK;
+ 346              		.loc 1 210 3 is_stmt 1 view .LVU110
+ 211:SMBus_PMBus_Stack/Target/smbus.c **** }
+ 347              		.loc 1 211 1 is_stmt 0 view .LVU111
+ 348 003c 0020     		movs	r0, #0
+ 349              	.LVL21:
+ 350              		.loc 1 211 1 view .LVU112
+ 351              		@ sp needed
+ 352              	.LVL22:
+ 353              		.loc 1 211 1 view .LVU113
+ 354 003e 10BD     		pop	{r4, pc}
+ 355              	.LVL23:
+ 356              	.L26:
+ 180:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.readZone = pStackContext->Buffer[2];
+ 357              		.loc 1 180 7 is_stmt 1 view .LVU114
+ 180:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.readZone = pStackContext->Buffer[2];
+ 358              		.loc 1 180 63 is_stmt 0 view .LVU115
+ 359 0040 1D32     		adds	r2, r2, #29
+ 360 0042 A25C     		ldrb	r2, [r4, r2]
+ 180:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.readZone = pStackContext->Buffer[2];
+ 361              		.loc 1 180 40 view .LVU116
+ 362 0044 6276     		strb	r2, [r4, #25]
+ 181:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 363              		.loc 1 181 7 is_stmt 1 view .LVU117
+ 181:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 364              		.loc 1 181 62 is_stmt 0 view .LVU118
+ 365 0046 2522     		movs	r2, #37
+ 366 0048 A25C     		ldrb	r2, [r4, r2]
+ 181:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 367              		.loc 1 181 39 view .LVU119
+ 368 004a 2276     		strb	r2, [r4, #24]
+ 369 004c E7E7     		b	.L23
+ 370              	.L27:
+ 185:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.activeReadZone = pStackContext->Buffer[2];
+ 371              		.loc 1 185 7 is_stmt 1 view .LVU120
+ 185:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.activeReadZone = pStackContext->Buffer[2];
+ 372              		.loc 1 185 69 is_stmt 0 view .LVU121
+ 373 004e 1C32     		adds	r2, r2, #28
+ 374 0050 A25C     		ldrb	r2, [r4, r2]
+ 185:SMBus_PMBus_Stack/Target/smbus.c ****       pStackContext->TheZone.activeReadZone = pStackContext->Buffer[2];
+ 375              		.loc 1 185 46 view .LVU122
+ 376 0052 E276     		strb	r2, [r4, #27]
+ 186:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 377              		.loc 1 186 7 is_stmt 1 view .LVU123
+ 186:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 378              		.loc 1 186 68 is_stmt 0 view .LVU124
+ 379 0054 2522     		movs	r2, #37
+ 380 0056 A25C     		ldrb	r2, [r4, r2]
+ 186:SMBus_PMBus_Stack/Target/smbus.c ****     }
+ 381              		.loc 1 186 45 view .LVU125
+ 382 0058 A276     		strb	r2, [r4, #26]
+ 383 005a E0E7     		b	.L23
+ 384              	.L29:
+ 385              		.align	2
+ 386              	.L28:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 12
+
+
+ 387 005c 00000000 		.word	HOST_NOTIFY_PROTOCOL
+ 388              		.cfi_endproc
+ 389              	.LFE42:
+ 391              		.section	.text.MX_SMBUS_Error_Check,"ax",%progbits
+ 392              		.align	1
+ 393              		.weak	MX_SMBUS_Error_Check
+ 394              		.syntax unified
+ 395              		.code	16
+ 396              		.thumb_func
+ 398              	MX_SMBUS_Error_Check:
+ 399              	.LVL24:
+ 400              	.LFB43:
+ 212:SMBus_PMBus_Stack/Target/smbus.c **** 
+ 213:SMBus_PMBus_Stack/Target/smbus.c **** /**
+ 214:SMBus_PMBus_Stack/Target/smbus.c ****   * @brief  Stub of an error treatment function - set to ignore most errors.
+ 215:SMBus_PMBus_Stack/Target/smbus.c ****             Defined "weak" for suggested replacement.
+ 216:SMBus_PMBus_Stack/Target/smbus.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 217:SMBus_PMBus_Stack/Target/smbus.c ****   *                the configuration information for the specified SMBUS.
+ 218:SMBus_PMBus_Stack/Target/smbus.c ****   * @retval None
+ 219:SMBus_PMBus_Stack/Target/smbus.c ****   */
+ 220:SMBus_PMBus_Stack/Target/smbus.c **** __weak void MX_SMBUS_Error_Check( SMBUS_StackHandleTypeDef *pStackContext)
+ 221:SMBus_PMBus_Stack/Target/smbus.c **** {
+ 401              		.loc 1 221 1 is_stmt 1 view -0
+ 402              		.cfi_startproc
+ 403              		@ args = 0, pretend = 0, frame = 0
+ 404              		@ frame_needed = 0, uses_anonymous_args = 0
+ 405              		@ link register save eliminated.
+ 222:SMBus_PMBus_Stack/Target/smbus.c ****   if ( ( STACK_SMBUS_IsBlockingError(pStackContext) ) || ( STACK_SMBUS_IsCmdError( pStackContext ) 
+ 406              		.loc 1 222 3 view .LVU127
+ 407              		.loc 1 222 55 is_stmt 0 view .LVU128
+ 408 0000 0368     		ldr	r3, [r0]
+ 409 0002 DC22     		movs	r2, #220
+ 410 0004 9203     		lsls	r2, r2, #14
+ 411              		.loc 1 222 6 view .LVU129
+ 412 0006 1342     		tst	r3, r2
+ 413 0008 03D0     		beq	.L31
+ 223:SMBus_PMBus_Stack/Target/smbus.c ****   {
+ 224:SMBus_PMBus_Stack/Target/smbus.c ****     /* No action, error symptoms are ignored */
+ 225:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->StateMachine &= ~(SMBUS_ERROR_CRITICAL | SMBUS_COM_ERROR);
+ 414              		.loc 1 225 5 is_stmt 1 view .LVU130
+ 415              		.loc 1 225 33 is_stmt 0 view .LVU131
+ 416 000a 084A     		ldr	r2, .L34
+ 417 000c 1340     		ands	r3, r2
+ 418 000e 0360     		str	r3, [r0]
+ 419              	.L30:
+ 226:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 227:SMBus_PMBus_Stack/Target/smbus.c ****   else if ((pStackContext->StateMachine & SMBUS_SMS_ERR_PECERR ) ==
+ 228:SMBus_PMBus_Stack/Target/smbus.c ****            SMBUS_SMS_ERR_PECERR ) /* PEC error, we won't wait for any more action */
+ 229:SMBus_PMBus_Stack/Target/smbus.c ****   {
+ 230:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->StateMachine |= SMBUS_SMS_READY;
+ 231:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->CurrentCommand = NULL;
+ 232:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->StateMachine &= ~(SMBUS_SMS_ACTIVE_MASK | SMBUS_SMS_ERR_PECERR);
+ 233:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 234:SMBus_PMBus_Stack/Target/smbus.c **** }
+ 420              		.loc 1 234 1 view .LVU132
+ 421              		@ sp needed
+ 422 0010 7047     		bx	lr
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 13
+
+
+ 423              	.L31:
+ 227:SMBus_PMBus_Stack/Target/smbus.c ****            SMBUS_SMS_ERR_PECERR ) /* PEC error, we won't wait for any more action */
+ 424              		.loc 1 227 8 is_stmt 1 view .LVU133
+ 227:SMBus_PMBus_Stack/Target/smbus.c ****            SMBUS_SMS_ERR_PECERR ) /* PEC error, we won't wait for any more action */
+ 425              		.loc 1 227 11 is_stmt 0 view .LVU134
+ 426 0012 1A02     		lsls	r2, r3, #8
+ 427 0014 FCD5     		bpl	.L30
+ 230:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->CurrentCommand = NULL;
+ 428              		.loc 1 230 5 is_stmt 1 view .LVU135
+ 230:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->CurrentCommand = NULL;
+ 429              		.loc 1 230 33 is_stmt 0 view .LVU136
+ 430 0016 0122     		movs	r2, #1
+ 431 0018 1900     		movs	r1, r3
+ 432 001a 1143     		orrs	r1, r2
+ 433 001c 0160     		str	r1, [r0]
+ 231:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->StateMachine &= ~(SMBUS_SMS_ACTIVE_MASK | SMBUS_SMS_ERR_PECERR);
+ 434              		.loc 1 231 5 is_stmt 1 view .LVU137
+ 231:SMBus_PMBus_Stack/Target/smbus.c ****     pStackContext->StateMachine &= ~(SMBUS_SMS_ACTIVE_MASK | SMBUS_SMS_ERR_PECERR);
+ 435              		.loc 1 231 35 is_stmt 0 view .LVU138
+ 436 001e 0021     		movs	r1, #0
+ 437 0020 C160     		str	r1, [r0, #12]
+ 232:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 438              		.loc 1 232 5 is_stmt 1 view .LVU139
+ 232:SMBus_PMBus_Stack/Target/smbus.c ****   }
+ 439              		.loc 1 232 33 is_stmt 0 view .LVU140
+ 440 0022 0349     		ldr	r1, .L34+4
+ 441 0024 0B40     		ands	r3, r1
+ 442 0026 1343     		orrs	r3, r2
+ 443 0028 0360     		str	r3, [r0]
+ 444              		.loc 1 234 1 view .LVU141
+ 445 002a F1E7     		b	.L30
+ 446              	.L35:
+ 447              		.align	2
+ 448              	.L34:
+ 449 002c FFFFC8FF 		.word	-3604481
+ 450 0030 A1FF7FFF 		.word	-8388703
+ 451              		.cfi_endproc
+ 452              	.LFE43:
+ 454              		.global	pcontext
+ 455              		.section	.bss.pcontext,"aw",%nobits
+ 456              		.align	2
+ 459              	pcontext:
+ 460 0000 00000000 		.space	4
+ 461              		.global	context
+ 462              		.section	.bss.context,"aw",%nobits
+ 463              		.align	2
+ 466              	context:
+ 467 0000 00000000 		.space	80
+ 467      00000000 
+ 467      00000000 
+ 467      00000000 
+ 467      00000000 
+ 468              		.text
+ 469              	.Letext0:
+ 470              		.file 2 "c:\\users\\daniel\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
+ 471              		.file 3 "c:\\users\\daniel\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
+ 472              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f042x6.h"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 14
+
+
+ 473              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 474              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_smbus.h"
+ 475              		.file 7 "Middlewares/ST/STM32_SMBus_Stack/inc/stm32_SMBUS_stack.h"
+ 476              		.file 8 "Middlewares/ST/STM32_SMBus_Stack/inc/stm32_PMBUS_stack.h"
+ 477              		.file 9 "Core/Inc/main.h"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 smbus.c
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:19     .text.MX_STACK_SMBUS_Init:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:25     .text.MX_STACK_SMBUS_Init:00000000 MX_STACK_SMBUS_Init
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:95     .text.MX_STACK_SMBUS_Init:0000003c $d
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:466    .bss.context:00000000 context
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:459    .bss.pcontext:00000000 pcontext
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:103    .text.STACK_SMBUS_ExtendCommand:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:109    .text.STACK_SMBUS_ExtendCommand:00000000 STACK_SMBUS_ExtendCommand
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:261    .text.STACK_SMBUS_ExtendCommand:00000080 $d
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:269    .text.STACK_SMBUS_ExecuteCommand:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:275    .text.STACK_SMBUS_ExecuteCommand:00000000 STACK_SMBUS_ExecuteCommand
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:387    .text.STACK_SMBUS_ExecuteCommand:0000005c $d
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:392    .text.MX_SMBUS_Error_Check:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:398    .text.MX_SMBUS_Error_Check:00000000 MX_SMBUS_Error_Check
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:449    .text.MX_SMBUS_Error_Check:0000002c $d
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:456    .bss.pcontext:00000000 $d
+C:\Users\Daniel\AppData\Local\Temp\ccmm64sh.s:463    .bss.context:00000000 $d
+
+UNDEFINED SYMBOLS
+STACK_SMBUS_Init
+Error_Handler
+PMBUS_COMMANDS_TAB
+hsmbus1
+STACK_SMBUS_GetBuffer
+HAL_SMBUS_Slave_Receive_IT
+EXTENDED_READ_WORD
+EXTENDED_WRITE_WORD
+EXTENDED_READ_BYTE
+EXTENDED_WRITE_BYTE
+HOST_NOTIFY_PROTOCOL

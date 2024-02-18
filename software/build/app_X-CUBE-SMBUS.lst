@@ -1,0 +1,196 @@
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"app_X-CUBE-SMBUS.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c"
+  18              		.section	.text.MX_SMBus_PMBus_Stack_Process,"ax",%progbits
+  19              		.align	1
+  20              		.global	MX_SMBus_PMBus_Stack_Process
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	MX_SMBus_PMBus_Stack_Process:
+  26              	.LFB40:
+   1:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** 
+   2:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** /* USER CODE BEGIN Header */
+   3:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** /**
+   4:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   ******************************************************************************
+   5:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   * @file    app_X-CUBE-SMBUS.c
+   6:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   * @brief   This file provides code for the configuration
+   7:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   *          of the I2C instances.
+   8:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   ******************************************************************************
+   9:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   * @attention
+  10:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   *
+  11:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   * Copyright (c) 2022 STMicroelectronics.
+  12:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   * All rights reserved.
+  13:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   *
+  14:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  15:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   * in the root directory of this software component.
+  16:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  17:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   *
+  18:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   ******************************************************************************
+  19:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   */
+  20:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** /* USER CODE END Header */
+  21:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** 
+  22:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** #include "app_X-CUBE-SMBUS.h"
+  23:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** 
+  24:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** void MX_SMBus_PMBus_Stack_Process()
+  25:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** {
+  27              		.loc 1 25 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s 			page 2
+
+
+  34              		.cfi_offset 14, -4
+  26:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   /* this function is a sanity check on the stack context */
+  27:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   /* optional but may help implementation robustness */
+  28:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   MX_SMBUS_Error_Check(pcontext);
+  35              		.loc 1 28 3 view .LVU1
+  36 0002 024B     		ldr	r3, .L2
+  37 0004 1868     		ldr	r0, [r3]
+  38 0006 FFF7FEFF 		bl	MX_SMBUS_Error_Check
+  39              	.LVL0:
+  29:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** /* USER CODE BEGIN 0 */
+  30:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** 
+  31:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** /* USER CODE END 0 */
+  32:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** }
+  40              		.loc 1 32 1 is_stmt 0 view .LVU2
+  41              		@ sp needed
+  42 000a 10BD     		pop	{r4, pc}
+  43              	.L3:
+  44              		.align	2
+  45              	.L2:
+  46 000c 00000000 		.word	pcontext
+  47              		.cfi_endproc
+  48              	.LFE40:
+  50              		.section	.text.MX_SMBus_PMBus_Stack_Init,"ax",%progbits
+  51              		.align	1
+  52              		.global	MX_SMBus_PMBus_Stack_Init
+  53              		.syntax unified
+  54              		.code	16
+  55              		.thumb_func
+  57              	MX_SMBus_PMBus_Stack_Init:
+  58              	.LFB41:
+  33:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** 
+  34:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** void MX_SMBus_PMBus_Stack_Init()
+  35:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** {
+  59              		.loc 1 35 1 is_stmt 1 view -0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63 0000 10B5     		push	{r4, lr}
+  64              		.cfi_def_cfa_offset 8
+  65              		.cfi_offset 4, -8
+  66              		.cfi_offset 14, -4
+  36:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   uint32_t      index;
+  67              		.loc 1 36 3 view .LVU4
+  37:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   uint8_t*      piobuf;
+  68              		.loc 1 37 3 view .LVU5
+  38:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** 
+  39:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   MX_STACK_SMBUS_Init();
+  69              		.loc 1 39 3 view .LVU6
+  70 0002 FFF7FEFF 		bl	MX_STACK_SMBUS_Init
+  71              	.LVL1:
+  40:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** 
+  41:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   piobuf = STACK_SMBUS_GetBuffer( pcontext );
+  72              		.loc 1 41 3 view .LVU7
+  73              		.loc 1 41 12 is_stmt 0 view .LVU8
+  74 0006 064B     		ldr	r3, .L9
+  75 0008 1868     		ldr	r0, [r3]
+  76 000a FFF7FEFF 		bl	STACK_SMBUS_GetBuffer
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s 			page 3
+
+
+  77              	.LVL2:
+  42:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** 
+  43:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   /* initializing the IO buffer */
+  44:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   /* this part is optional */
+  45:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   if (piobuf != NULL )
+  78              		.loc 1 45 3 is_stmt 1 view .LVU9
+  79              		.loc 1 45 6 is_stmt 0 view .LVU10
+  80 000e 0028     		cmp	r0, #0
+  81 0010 05D0     		beq	.L4
+  46:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   {
+  47:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****     for (index = 0U; index < STACK_NBYTE_SIZE; index++)
+  82              		.loc 1 47 16 view .LVU11
+  83 0012 0023     		movs	r3, #0
+  84 0014 01E0     		b	.L5
+  85              	.LVL3:
+  86              	.L7:
+  48:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****     {
+  49:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****       piobuf[index] = (uint8_t)index;
+  87              		.loc 1 49 7 is_stmt 1 discriminator 3 view .LVU12
+  88              		.loc 1 49 21 is_stmt 0 discriminator 3 view .LVU13
+  89 0016 C354     		strb	r3, [r0, r3]
+  47:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****     {
+  90              		.loc 1 47 53 is_stmt 1 discriminator 3 view .LVU14
+  91 0018 0133     		adds	r3, r3, #1
+  92              	.LVL4:
+  93              	.L5:
+  47:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****     {
+  94              		.loc 1 47 28 discriminator 1 view .LVU15
+  95 001a 272B     		cmp	r3, #39
+  96 001c FBD9     		bls	.L7
+  97              	.LVL5:
+  98              	.L4:
+  50:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****     }
+  51:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c ****   }
+  52:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** /* USER CODE BEGIN 1 */
+  53:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** 
+  54:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** /* USER CODE END 1 */
+  55:SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.c **** }
+  99              		.loc 1 55 1 is_stmt 0 view .LVU16
+ 100              		@ sp needed
+ 101 001e 10BD     		pop	{r4, pc}
+ 102              	.L10:
+ 103              		.align	2
+ 104              	.L9:
+ 105 0020 00000000 		.word	pcontext
+ 106              		.cfi_endproc
+ 107              	.LFE41:
+ 109              		.text
+ 110              	.Letext0:
+ 111              		.file 2 "c:\\users\\daniel\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
+ 112              		.file 3 "c:\\users\\daniel\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
+ 113              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f042x6.h"
+ 114              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 115              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_smbus.h"
+ 116              		.file 7 "Middlewares/ST/STM32_SMBus_Stack/inc/stm32_SMBUS_stack.h"
+ 117              		.file 8 "SMBus_PMBus_Stack/App/app_X-CUBE-SMBUS.h"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 app_X-CUBE-SMBUS.c
+C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s:19     .text.MX_SMBus_PMBus_Stack_Process:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s:25     .text.MX_SMBus_PMBus_Stack_Process:00000000 MX_SMBus_PMBus_Stack_Process
+C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s:46     .text.MX_SMBus_PMBus_Stack_Process:0000000c $d
+C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s:51     .text.MX_SMBus_PMBus_Stack_Init:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s:57     .text.MX_SMBus_PMBus_Stack_Init:00000000 MX_SMBus_PMBus_Stack_Init
+C:\Users\Daniel\AppData\Local\Temp\ccVmwX2R.s:105    .text.MX_SMBus_PMBus_Stack_Init:00000020 $d
+
+UNDEFINED SYMBOLS
+MX_SMBUS_Error_Check
+pcontext
+MX_STACK_SMBUS_Init
+STACK_SMBUS_GetBuffer

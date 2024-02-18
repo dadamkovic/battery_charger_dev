@@ -1,0 +1,2558 @@
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32_PMBUS_stack.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c"
+  18              		.section	.text.STACK_PMBUS_HostCommandGroup,"ax",%progbits
+  19              		.align	1
+  20              		.global	STACK_PMBUS_HostCommandGroup
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	STACK_PMBUS_HostCommandGroup:
+  26              	.LVL0:
+  27              	.LFB40:
+   1:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+   2:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   ******************************************************************************
+   3:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @file    stm32_PMBUS_stack.c
+   4:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @author  MCD Application Team
+   5:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @version V2.0.2
+   6:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @date    31-Oct-2017
+   7:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @brief   This file provides a set of functions needed to manage the PMBus
+   8:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *          on top of the SMBus stack.
+   9:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   ******************************************************************************
+  10:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @attention
+  11:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *
+  12:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  13:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *
+  14:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+  15:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * You may not use this file except in compliance with the License.
+  16:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * You may obtain a copy of the License at:
+  17:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *
+  18:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *        http://www.st.com/software_license_agreement_liberty_v2
+  19:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *
+  20:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * Unless required by applicable law or agreed to in writing, software
+  21:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * distributed under the License is distributed on an "AS IS" BASIS,
+  22:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  23:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * See the License for the specific language governing permissions and
+  24:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * limitations under the License.
+  25:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *
+  26:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   ******************************************************************************
+  27:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+  28:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+  29:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /* Includes ------------------------------------------------------------------*/
+  30:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #include "stm32_PMBUS_stack.h"
+  31:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #include "stm32_SMBUS_stack.h"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 2
+
+
+  32:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+  33:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /** @addtogroup STM32_PMBUS_STACK
+  34:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @{
+  35:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+  36:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+  37:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /** @defgroup STM32_PMBUS_STACK_Constants
+  38:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @{
+  39:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+  40:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+  41:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /* ----------- definition of PMBUS commands ---------------- */
+  42:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** st_command_t const PMBUS_COMMANDS_TAB[] =
+  43:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+  44:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_PAGE, READ_OR_WRITE, 2, 1 },                               /* code 00 */
+  45:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_OPERATION, READ_OR_WRITE, 2, 1 },                          /* code 01 */
+  46:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_ON_OFF_CONFIG, READ_OR_WRITE, 2, 1 },                      /* code 02 */
+  47:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_CLEAR_FAULTS, WRITE, 1, 0 },                               /* code 03 */
+  48:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_PHASE, READ_OR_WRITE, 2, 1 },                              /* code 04 */
+  49:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS12
+  50:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_PAGE_PLUS_WRITE, BLOCK_WRITE, 3, 0 },                      /* code 05 */
+  51:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_PAGE_PLUS_READ, BLK_PRC_CALL, 3, 2 },                      /* code 06 */
+  52:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS13
+  53:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_ZONE_CONFIG, READ_OR_WRITE, 3, 2 },                        /* code 07 */
+  54:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_ZONE_ACTIVE, READ_OR_WRITE, 3, 2 },                        /* code 08 */
+  55:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+  56:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+  57:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_WRITE_PROTECT, READ_OR_WRITE,  2, 1 },                     /* code 10 */
+  58:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STORE_DEFAULT_ALL, WRITE, 1, 0 },                          /* code 11 */
+  59:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_RESTORE_DEFAULT_ALL, WRITE, 1, 0 },                        /* code 12 */
+  60:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STORE_DEFAULT_CODE, WRITE, 2, 0 },                         /* code 13 */
+  61:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_RESTORE_DEFAULT_CODE, WRITE, 2, 0 },                       /* code 14 */
+  62:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STORE_USER_ALL, WRITE, 1, 0 },                             /* code 15 */
+  63:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_RESTORE_USER_ALL, WRITE, 1, 0 },                           /* code 16 */
+  64:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STORE_USER_CODE, WRITE, 2, 0 },                            /* code 17 */
+  65:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_RESTORE_USER_CODE, WRITE, 2, 0 },                          /* code 18 */
+  66:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_CAPABILITY, READ, 1, 1 },                                  /* code 19 */
+  67:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_QUERY, PROCESS_CALL, 2, 1 },                               /* code 1A */
+  68:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS12
+  69:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_SMBALERT_MASK, READ_OR_WRITE, 3, 2 },                      /* code 1B */
+  70:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+  71:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_MODE, READ_OR_WRITE, 2, 1 },                          /* code 20 */
+  72:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUNT_COMMAND, READ_OR_WRITE, 3, 2 },                      /* code 21 */
+  73:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_TRIM, READ_OR_WRITE, 3, 2 },                          /* code 22 */
+  74:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_CAL_OFFSET, READ_OR_WRITE, 3, 2 },                    /* code 23 */
+  75:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_MAX, READ_OR_WRITE, 3, 2 },                           /* code 24 */
+  76:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_MARGIN_HIGH, READ_OR_WRITE, 3, 2 },                   /* code 25 */
+  77:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_MARGIN_LOW, READ_OR_WRITE, 3, 2 },                    /* code 26 */
+  78:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_TRANSITION_RATE, READ_OR_WRITE, 3, 2 },               /* code 27 */
+  79:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_DROOP, READ_OR_WRITE, 3, 2 },                         /* code 28 */
+  80:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_SCALE_LOOP, READ_OR_WRITE, 3, 2 },                    /* code 29 */
+  81:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_SCALE_MONITOR, READ_OR_WRITE, 3, 2 },                 /* code 2A */
+  82:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS13
+  83:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_MIN, READ_OR_WRITE, 3, 2 },                           /* code 2B */
+  84:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+  85:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_COEFICIENTS, BLK_PRC_CALL, 3, 5 },                         /* code 30 */
+  86:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_POUT_MAX, READ_OR_WRITE, 3, 2 },                           /* code 31 */
+  87:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MAX_DUTY, READ_OR_WRITE, 3, 2 },                           /* code 32 */
+  88:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_FREQUENCY_SWITCH, READ_OR_WRITE, 3, 2 },                   /* code 33 */
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 3
+
+
+  89:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS13
+  90:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_POWER_MODE, READ_OR_WRITE, 2, 1 },                         /* code 34 */
+  91:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+  92:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VIN_ON, READ_OR_WRITE, 3, 2 },                             /* code 35 */
+  93:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VIN_OFF, READ_OR_WRITE, 3, 2 },                            /* code 36 */
+  94:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_INTERLEAVE, READ_OR_WRITE, 3, 2 },                         /* code 37 */
+  95:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IOUT_CAL_GAIN, READ_OR_WRITE, 3, 2 },                      /* code 38 */
+  96:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IOUT_CAL_OFFSET, READ_OR_WRITE, 3, 2 },                    /* code 39 */
+  97:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_FAN_CONFIG_1_2, READ_OR_WRITE, 2, 1 },                     /* code 3A */
+  98:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_FAN_COMMAND_1, READ_OR_WRITE, 3, 2 },                      /* code 3B */
+  99:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_FAN_COMMAND_2, READ_OR_WRITE, 3, 2 },                      /* code 3C */
+ 100:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_FAN_CONFIG_3_4, READ_OR_WRITE, 2, 1 },                     /* code 3D */
+ 101:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_FAN_COMMAND_3, READ_OR_WRITE, 3, 2 },                      /* code 3E */
+ 102:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_FAN_COMMAND_4, READ_OR_WRITE, 3, 2 },                      /* code 3F */
+ 103:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_OV_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                /* code 40 */
+ 104:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_OV_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },             /* code 41 */
+ 105:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_OV_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                 /* code 42 */
+ 106:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_UV_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                 /* code 43 */
+ 107:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_UV_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                /* code 44 */
+ 108:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VOUT_UV_FAULT_RESPONSE, READ_OR_WRITE, 3, 2 },             /* code 45 */
+ 109:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IOUT_OC_FAULT_LIMIT, READ_OR_WRITE, 2, 1 },                /* code 46 */
+ 110:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IOUT_OC_FAULT_RESPONSE, READ_OR_WRITE, 3, 2 },             /* code 47 */
+ 111:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IOUT_OC_LV_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },             /* code 48 */
+ 112:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IOUT_OC_LV_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },          /* code 49 */
+ 113:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IOUT_OC_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                 /* code 4A */
+ 114:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IOUT_UC_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                /* code 4B */
+ 115:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IOUT_UC_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },             /* code 4C */
+ 116:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_OT_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                     /* code 4F */
+ 117:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_OT_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },                  /* code 50 */
+ 118:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_OT_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                      /* code 51 */
+ 119:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_UT_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                      /* code 52 */
+ 120:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_UT_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                     /* code 53 */
+ 121:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_UT_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },                  /* code 54 */
+ 122:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VIN_OV_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                 /* code 55 */
+ 123:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VIN_OV_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },              /* code 56 */
+ 124:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VIN_OV_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                  /* code 57 */
+ 125:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VIN_UV_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                  /* code 58 */
+ 126:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VIN_UV_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                 /* code 59 */
+ 127:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_VIN_UV_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },              /* code 5A */
+ 128:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IIN_OC_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                 /* code 5B */
+ 129:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IIN_OC_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },              /* code 5C */
+ 130:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IIN_OC_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                  /* code 5D */
+ 131:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_POWER_GOOD_ON, READ_OR_WRITE, 3, 2 },                      /* code 5E */
+ 132:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_POWER_GOOD_OFF, READ_OR_WRITE, 3, 2 },                     /* code 5F */
+ 133:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_TON_DELAY, READ_OR_WRITE, 3, 2 },                          /* code 60 */
+ 134:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_TON_RISE, READ_OR_WRITE, 3, 2 },                           /* code 61 */
+ 135:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_TON_MAX_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                /* code 62 */
+ 136:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_TON_MAX_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },             /* code 63 */
+ 137:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_TOFF_DELAY, READ_OR_WRITE, 3, 2 },                         /* code 64 */
+ 138:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_TOFF_FALL, READ_OR_WRITE, 3, 2 },                          /* code 65 */
+ 139:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_TOFF_MAX_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                /* code 66 */
+ 140:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_POUT_OP_FAULT_LIMIT, READ_OR_WRITE, 3, 2 },                /* code 68 */
+ 141:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_POUT_OP_FAULT_RESPONSE, READ_OR_WRITE, 2, 1 },             /* code 69 */
+ 142:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_POUT_OP_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                 /* code 6A */
+ 143:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_PIN_OP_WARN_LIMIT, READ_OR_WRITE, 3, 2 },                  /* code 6B */
+ 144:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS12
+ 145:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_BYTE, READ_OR_WRITE, 2, 1 },                        /* code 78 */
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 4
+
+
+ 146:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_WORD, READ_OR_WRITE, 3, 2 },                        /* code 79 */
+ 147:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #else
+ 148:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_BYTE, READ, 1, 1 },                                 /* code 78 */
+ 149:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_WORD, READ, 1, 2 },                                 /* code 79 */
+ 150:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+ 151:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_VOUT, READ, 1, 1 },                                 /* code 7A */
+ 152:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_IOUT, READ, 1, 1 },                                 /* code 7B */
+ 153:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_INPUT, READ, 1, 1 },                                /* code 7C */
+ 154:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_TEMPERATURE, READ, 1, 1 },                          /* code 7D */
+ 155:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_CML, READ, 1, 1 },                                  /* code 7E */
+ 156:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_OTHER, READ, 1, 1 },                                /* code 7F */
+ 157:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_MFR_SPECIFIC, READ, 1, 1 },                         /* code 80 */
+ 158:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_FANS_1_2, READ, 1, 1 },                             /* code 81 */
+ 159:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_STATUS_FANS_3_4, READ, 1, 1 },                             /* code 82 */
+ 160:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS13
+ 161:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_KWH_IN, READ, 1, 4 },                                 /* code 83 */
+ 162:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_KWH_OUT, READ, 1, 4 },                                /* code 84 */
+ 163:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_KWH_CONFIG, READ_OR_WRITE, 3, 2 },                    /* code 85 */
+ 164:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+ 165:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS12
+ 166:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_EIN, BLOCK_READ, 1, 6 },                              /* code 87 */
+ 167:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_EOUT, BLOCK_READ, 1, 6 },                             /* code 87 */
+ 168:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+ 169:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_VIN, READ, 1, 2 },                                    /* code 88 */
+ 170:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_IIN, READ, 1, 2 },                                    /* code 89 */
+ 171:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_VCAP, READ, 1, 2 },                                   /* code 8A */
+ 172:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_VOUT, READ, 1, 2 },                                   /* code 8B */
+ 173:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_IOUT, READ, 1, 2 },                                   /* code 8C */
+ 174:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_TEMPERATURE_1, READ, 1, 2 },                          /* code 8D */
+ 175:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_TEMPERATURE_2, READ, 1, 2 },                          /* code 8E */
+ 176:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_TEMPERATURE_3, READ, 1, 2 },                          /* code 8F */
+ 177:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_FAN_SPEED_1, READ, 1, 2 },                            /* code 90 */
+ 178:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_FAN_SPEED_2, READ, 1, 2 },                            /* code 91 */
+ 179:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_FAN_SPEED_3, READ, 1, 2 },                            /* code 92 */
+ 180:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_FAN_SPEED_4, READ, 1, 2 },                            /* code 93 */
+ 181:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_DUTY_CYCLE, READ, 1, 2 },                             /* code 94 */
+ 182:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_FREQUENCY, READ, 1, 2 },                              /* code 95 */
+ 183:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_POUT, READ, 1, 2 },                                   /* code 96 */
+ 184:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_READ_PIN, READ, 1, 2 },                                    /* code 97 */
+ 185:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_PMBUS_REVISION, READ, 1, 1 },                              /* code 98 */
+ 186:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_ID, BLK_RD_OR_WR, 1, 1 },                              /* code 99 */
+ 187:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_MODEL, BLK_RD_OR_WR, 1, 1 },                           /* code 9A */
+ 188:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_REVISION, BLK_RD_OR_WR, 1, 1 },                        /* code 9B */
+ 189:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_LOCATION, BLK_RD_OR_WR, 1, 1 },                        /* code 9C */
+ 190:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_DATE, BLK_RD_OR_WR, 1, 1 },                            /* code 9D */
+ 191:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_SERIAL, BLK_RD_OR_WR, 1, 1 },                          /* code 9E */
+ 192:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS12
+ 193:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_APP_PROFILE_SUPPORT, BLOCK_READ, 1, 2 },                   /* code 9F */
+ 194:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+ 195:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_VIN_MIN, READ, 1, 2 },                                 /* code A0 */
+ 196:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_VIN_MAX, READ, 1, 2 },                                 /* code A1 */
+ 197:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_IIN_MAX, READ, 1, 2 },                                 /* code A2 */
+ 198:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_PIN_MAX, READ, 1, 2 },                                 /* code A3 */
+ 199:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_VOUT_MIN, READ, 1, 2 },                                /* code A4 */
+ 200:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_VOUT_MAX, READ, 1, 2 },                                /* code A5 */
+ 201:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_IOUT_MAX, READ, 1, 2 },                                /* code A6 */
+ 202:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_POUT_MAX, READ, 1, 2 },                                /* code A7 */
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 5
+
+
+ 203:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_TAMBIENT_MAX, READ, 1, 2 },                            /* code A8 */
+ 204:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_TAMBIENT_MIN, READ, 1, 2 },                            /* code A9 */
+ 205:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_EFFICIENCY_LL, BLK_RD_OR_WR, 15, 14 },                 /* code AA */
+ 206:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_EFFICIENCY_HL, BLK_RD_OR_WR, 15, 14 },                 /* code AB */
+ 207:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS12
+ 208:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_PIN_ACCURACY, READ, 1, 1 },                            /* code AC */
+ 209:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IC_DEVICE_ID, BLOCK_READ, 1, 2},                           /* code AD */
+ 210:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_IC_DEVICE_REV, BLOCK_READ, 1, 2},                          /* code AE */
+ 211:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+ 212:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_00, BLK_RD_OR_WR, 1, 1 },                        /* code B0 */
+ 213:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_01, BLK_RD_OR_WR, 1, 1 },                        /* code B1 */
+ 214:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_02, BLK_RD_OR_WR, 1, 1 },                        /* code B2 */
+ 215:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_03, BLK_RD_OR_WR, 1, 1 },                        /* code B3 */
+ 216:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_04, BLK_RD_OR_WR, 1, 1 },                        /* code B4 */
+ 217:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_05, BLK_RD_OR_WR, 1, 1 },                        /* code B5 */
+ 218:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_06, BLK_RD_OR_WR, 1, 1 },                        /* code B6 */
+ 219:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_07, BLK_RD_OR_WR, 1, 1 },                        /* code B7 */
+ 220:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_08, BLK_RD_OR_WR, 1, 1 },                        /* code B8 */
+ 221:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_09, BLK_RD_OR_WR, 1, 1 },                        /* code B9 */
+ 222:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_10, BLK_RD_OR_WR, 1, 1 },                        /* code BA */
+ 223:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_11, BLK_RD_OR_WR, 1, 1 },                        /* code BB */
+ 224:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_12, BLK_RD_OR_WR, 1, 1 },                        /* code BC */
+ 225:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_13, BLK_RD_OR_WR, 1, 1 },                        /* code BD */
+ 226:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_14, BLK_RD_OR_WR, 1, 1 },                        /* code BE */
+ 227:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_USER_DATA_15, BLK_RD_OR_WR, 1, 1 },                        /* code BF */
+ 228:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS12
+ 229:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_MAX_TEMP_1, READ_OR_WRITE, 3, 2 },                     /* code C0 */
+ 230:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_MAX_TEMP_2, READ_OR_WRITE, 3, 2 },                     /* code C1 */
+ 231:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { PMBC_MFR_MAX_TEMP_3, READ_OR_WRITE, 3, 2 },                     /* code C2 */
+ 232:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+ 233:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** };
+ 234:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 235:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** st_command_t const PMBUS_COMMANDS_TEST[] =
+ 236:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+ 237:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 0, WRITE, 0, 0 },
+ 238:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 1, WRITE, 2, 0 },
+ 239:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 2, WRITE, 3, 0 },
+ 240:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 3, WRITE, 5, 0 },
+ 241:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 4, WRITE, 9, 0 },
+ 242:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 5, BLOCK_WRITE, 3, 0 },
+ 243:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 6, BLOCK_WRITE, 11, 0 },
+ 244:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 7, READ, 0, 1 },
+ 245:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 8, READ, 0, 2 },
+ 246:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 9, READ, 0, 4 },
+ 247:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 10, READ, 0, 8 },
+ 248:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 11, BLOCK_READ, 0, 4 },
+ 249:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 12, BLOCK_READ, 0, 11 },
+ 250:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 13, BLOCK_READ, 0, STACK_NBYTE_SIZE },
+ 251:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 14, BLOCK_WRITE, STACK_NBYTE_SIZE, 0 },
+ 252:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 15, PROCESS_CALL, 3, 2},
+ 253:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 16, BLK_PRC_CALL, 13, 9 },
+ 254:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 17, READ_OR_WRITE, 2, 2 },
+ 255:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 18, READ_OR_WRITE, 4, 4 },
+ 256:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 19, BLK_RD_OR_WR, 3, 1 },
+ 257:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   { 20, BLK_RD_OR_WR, 1, 3 }
+ 258:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** };
+ 259:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 6
+
+
+ 260:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /*
+ 261:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     dedicated command definitions for the extended command support
+ 262:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****  */
+ 263:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** st_command_t const EXTENDED_READ_BYTE = { PMBC_PMBUS_COMMAND_EXT, PROCESS_CALL, 2, 1 };
+ 264:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** st_command_t const EXTENDED_READ_WORD = { PMBC_PMBUS_COMMAND_EXT, PROCESS_CALL, 2, 2 };
+ 265:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** st_command_t const EXTENDED_WRITE_BYTE = { PMBC_PMBUS_COMMAND_EXT, WRITE, 3, 0 };
+ 266:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** st_command_t const EXTENDED_WRITE_WORD = { PMBC_PMBUS_COMMAND_EXT, WRITE, 4, 0 };
+ 267:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 268:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /*
+ 269:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     dedicated command definition for the Zone read support
+ 270:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****  */
+ 271:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** st_command_t const ZONE_READ_COMMAND = { 0, PROCESS_CALL, 2, 2 };
+ 272:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 273:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /* Private define ------------------------------------------------------------*/
+ 274:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #define NOT_USED(p) ((void)(p))
+ 275:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 276:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+ 277:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @}
+ 278:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 279:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 280:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /** @defgroup STM32_PMBUS_STACK_Functions
+ 281:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @{
+ 282:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 283:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 284:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+ 285:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @brief  PMBUS master group command transmit, direction is implicitly write.
+ 286:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 287:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *                the configuration information for the specified SMBUS.
+ 288:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pCommand : description of the command to be transmitted, NULL for quick command
+ 289:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  address : device address
+ 290:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  last : last command in the group - STOP condition is transmitted if this flag is != 0
+ 291:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @retval SMBus stack return code
+ 292:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 293:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** HAL_StatusTypeDef STACK_PMBUS_HostCommandGroup(SMBUS_StackHandleTypeDef *pStackContext, st_command_
+ 294:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     uint16_t address, uint8_t last)
+ 295:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+  28              		.loc 1 295 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 295 1 is_stmt 0 view .LVU1
+  33 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  34              		.cfi_def_cfa_offset 20
+  35              		.cfi_offset 4, -20
+  36              		.cfi_offset 5, -16
+  37              		.cfi_offset 6, -12
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+  40 0002 85B0     		sub	sp, sp, #20
+  41              		.cfi_def_cfa_offset 40
+  42 0004 0400     		movs	r4, r0
+  43 0006 0D00     		movs	r5, r1
+  44 0008 1600     		movs	r6, r2
+  45 000a 0393     		str	r3, [sp, #12]
+ 296:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   HAL_StatusTypeDef     result = STACK_ERROR;
+  46              		.loc 1 296 3 is_stmt 1 view .LVU2
+  47              	.LVL1:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 7
+
+
+ 297:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint16_t              size;
+  48              		.loc 1 297 3 view .LVU3
+ 298:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint32_t              xFerOptions = SMBUS_FIRST_FRAME;
+  49              		.loc 1 298 3 view .LVU4
+ 299:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 300:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   /*
+ 301:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     First check status of the SMBUS - no transaction ongoing
+ 302:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 303:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   if (( ((pStackContext->StateMachine) & SMBUS_SMS_ACTIVE_MASK) == 0U ) && ( ( pCommand->cmnd_query
+  50              		.loc 1 303 3 view .LVU5
+  51              		.loc 1 303 24 is_stmt 0 view .LVU6
+  52 000c 0368     		ldr	r3, [r0]
+  53              	.LVL2:
+  54              		.loc 1 303 40 view .LVU7
+  55 000e 5E22     		movs	r2, #94
+  56              	.LVL3:
+  57              		.loc 1 303 40 view .LVU8
+  58 0010 1700     		movs	r7, r2
+  59 0012 1F40     		ands	r7, r3
+  60              		.loc 1 303 6 view .LVU9
+  61 0014 1A42     		tst	r2, r3
+  62 0016 44D1     		bne	.L7
+  63              		.loc 1 303 88 discriminator 1 view .LVU10
+  64 0018 4B78     		ldrb	r3, [r1, #1]
+  65              		.loc 1 303 73 discriminator 1 view .LVU11
+  66 001a 5B06     		lsls	r3, r3, #25
+  67 001c 01D4     		bmi	.L10
+ 296:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint16_t              size;
+  68              		.loc 1 296 25 view .LVU12
+  69 001e 0120     		movs	r0, #1
+  70              	.LVL4:
+ 296:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint16_t              size;
+  71              		.loc 1 296 25 view .LVU13
+  72 0020 40E0     		b	.L2
+  73              	.LVL5:
+  74              	.L10:
+ 304:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   {
+ 305:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 306:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     becoming master, not listening any more
+ 307:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     */
+ 308:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     HAL_SMBUS_DisableListen_IT( pStackContext->Device );
+  75              		.loc 1 308 5 is_stmt 1 view .LVU14
+  76 0022 4068     		ldr	r0, [r0, #4]
+  77              	.LVL6:
+  78              		.loc 1 308 5 is_stmt 0 view .LVU15
+  79 0024 FFF7FEFF 		bl	HAL_SMBUS_DisableListen_IT
+  80              	.LVL7:
+ 309:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 310:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     if ( pCommand == NULL )
+  81              		.loc 1 310 5 is_stmt 1 view .LVU16
+  82              		.loc 1 310 8 is_stmt 0 view .LVU17
+  83 0028 002D     		cmp	r5, #0
+  84 002a 38D0     		beq	.L9
+ 311:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 312:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 313:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         quick command case
+ 314:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         */
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 8
+
+
+ 315:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       size = 0U;
+ 316:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 317:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     else
+ 318:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 319:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 320:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       the command must support write mode, otherwise is unusable for grouping
+ 321:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 322:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 323:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->OpMode = pCommand->cmnd_query & BLOCK_WRITE;
+  85              		.loc 1 323 7 is_stmt 1 view .LVU18
+  86              		.loc 1 323 39 is_stmt 0 view .LVU19
+  87 002c 6A78     		ldrb	r2, [r5, #1]
+  88              		.loc 1 323 52 view .LVU20
+  89 002e 5023     		movs	r3, #80
+  90 0030 1340     		ands	r3, r2
+  91              		.loc 1 323 29 view .LVU21
+  92 0032 2122     		movs	r2, #33
+  93 0034 A354     		strb	r3, [r4, r2]
+ 324:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 325:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 326:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         Remembering the address and command code for case of further processing of non-trivial comm
+ 327:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 328:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->SlaveAddress = address;
+  94              		.loc 1 328 7 is_stmt 1 view .LVU22
+  95              		.loc 1 328 35 is_stmt 0 view .LVU23
+  96 0036 E683     		strh	r6, [r4, #30]
+ 329:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->CurrentCommand = pCommand;
+  97              		.loc 1 329 7 is_stmt 1 view .LVU24
+  98              		.loc 1 329 37 is_stmt 0 view .LVU25
+  99 0038 E560     		str	r5, [r4, #12]
+ 330:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 331:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 332:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       First byte, the command code is transmitted
+ 333:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 334:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->Buffer[0] = pCommand->cmnd_code;
+ 100              		.loc 1 334 7 is_stmt 1 view .LVU26
+ 101              		.loc 1 334 42 is_stmt 0 view .LVU27
+ 102 003a 2A78     		ldrb	r2, [r5]
+ 103              		.loc 1 334 32 view .LVU28
+ 104 003c 2323     		movs	r3, #35
+ 105 003e E254     		strb	r2, [r4, r3]
+ 335:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 336:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       if ( pCommand->cmnd_query & BLOCK )
+ 106              		.loc 1 336 7 is_stmt 1 view .LVU29
+ 107              		.loc 1 336 20 is_stmt 0 view .LVU30
+ 108 0040 6B78     		ldrb	r3, [r5, #1]
+ 109              		.loc 1 336 10 view .LVU31
+ 110 0042 DB06     		lsls	r3, r3, #27
+ 111 0044 29D5     		bpl	.L4
+ 337:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       {
+ 338:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         /*
+ 339:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****             Block write with data size prepared in the buffer.
+ 340:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           */
+ 341:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         size = 2U + (uint16_t)(pStackContext->Buffer[1]);            /* 1 cmd code + 1 count + data
+ 112              		.loc 1 341 9 is_stmt 1 view .LVU32
+ 113              		.loc 1 341 53 is_stmt 0 view .LVU33
+ 114 0046 2423     		movs	r3, #36
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 9
+
+
+ 115 0048 E35C     		ldrb	r3, [r4, r3]
+ 116              		.loc 1 341 14 view .LVU34
+ 117 004a 0233     		adds	r3, r3, #2
+ 118              	.LVL8:
+ 119              	.L5:
+ 342:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 343:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       else
+ 344:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       {
+ 345:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         /*
+ 346:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         fixed size write
+ 347:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         */
+ 348:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         size = pCommand->cmnd_master_Tx_size;
+ 349:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 350:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 351:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       xFerOptions |= ( pStackContext->StateMachine & SMBUS_SMS_PEC_ACTIVE );
+ 120              		.loc 1 351 7 is_stmt 1 view .LVU35
+ 121              		.loc 1 351 37 is_stmt 0 view .LVU36
+ 122 004c 2168     		ldr	r1, [r4]
+ 123              		.loc 1 351 52 view .LVU37
+ 124 004e 8022     		movs	r2, #128
+ 125 0050 D204     		lsls	r2, r2, #19
+ 126 0052 0F00     		movs	r7, r1
+ 127 0054 1740     		ands	r7, r2
+ 128              	.LVL9:
+ 352:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       if ((pStackContext->StateMachine & SMBUS_SMS_PEC_ACTIVE ) == SMBUS_SMS_PEC_ACTIVE )
+ 129              		.loc 1 352 7 is_stmt 1 view .LVU38
+ 130              		.loc 1 352 10 is_stmt 0 view .LVU39
+ 131 0056 1142     		tst	r1, r2
+ 132 0058 01D0     		beq	.L3
+ 353:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       {
+ 354:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         size += 1U;
+ 133              		.loc 1 354 9 is_stmt 1 view .LVU40
+ 134              		.loc 1 354 14 is_stmt 0 view .LVU41
+ 135 005a 0133     		adds	r3, r3, #1
+ 136              	.LVL10:
+ 137              		.loc 1 354 14 view .LVU42
+ 138 005c 9BB2     		uxth	r3, r3
+ 139              	.LVL11:
+ 140              	.L3:
+ 355:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 356:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 357:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 358:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 359:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       finishing transmission
+ 360:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****      */
+ 361:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     if ( last != 0U )
+ 141              		.loc 1 361 5 is_stmt 1 view .LVU43
+ 142              		.loc 1 361 8 is_stmt 0 view .LVU44
+ 143 005e 039A     		ldr	r2, [sp, #12]
+ 144 0060 002A     		cmp	r2, #0
+ 145 0062 02D0     		beq	.L6
+ 362:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 363:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       xFerOptions |= SMBUS_LAST_FRAME_NO_PEC;
+ 146              		.loc 1 363 7 is_stmt 1 view .LVU45
+ 147              		.loc 1 363 19 is_stmt 0 view .LVU46
+ 148 0064 8022     		movs	r2, #128
+ 149 0066 9204     		lsls	r2, r2, #18
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 10
+
+
+ 150 0068 1743     		orrs	r7, r2
+ 151              	.LVL12:
+ 152              	.L6:
+ 364:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 365:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 366:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 367:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       Initiating a transmission
+ 368:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 369:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine |= SMBUS_SMS_TRANSMIT;
+ 153              		.loc 1 369 5 is_stmt 1 view .LVU47
+ 154              		.loc 1 369 18 is_stmt 0 view .LVU48
+ 155 006a 2268     		ldr	r2, [r4]
+ 156              		.loc 1 369 33 view .LVU49
+ 157 006c 0221     		movs	r1, #2
+ 158 006e 1000     		movs	r0, r2
+ 159 0070 0843     		orrs	r0, r1
+ 160 0072 2060     		str	r0, [r4]
+ 370:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine &= ~SMBUS_SMS_READY;
+ 161              		.loc 1 370 5 is_stmt 1 view .LVU50
+ 162              		.loc 1 370 33 is_stmt 0 view .LVU51
+ 163 0074 0120     		movs	r0, #1
+ 164 0076 8243     		bics	r2, r0
+ 165 0078 0A43     		orrs	r2, r1
+ 166 007a 2260     		str	r2, [r4]
+ 371:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 372:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 373:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       Sending the data and logging the result
+ 374:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 375:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     result = HAL_SMBUS_Master_Transmit_IT( pStackContext->Device, address, pStackContext->Buffer, s
+ 167              		.loc 1 375 5 is_stmt 1 view .LVU52
+ 168              		.loc 1 375 14 is_stmt 0 view .LVU53
+ 169 007c 6068     		ldr	r0, [r4, #4]
+ 170 007e 0097     		str	r7, [sp]
+ 171 0080 2200     		movs	r2, r4
+ 172 0082 2332     		adds	r2, r2, #35
+ 173 0084 3100     		movs	r1, r6
+ 174 0086 FFF7FEFF 		bl	HAL_SMBUS_Master_Transmit_IT
+ 175              	.LVL13:
+ 376:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     if (result != HAL_OK )
+ 176              		.loc 1 376 5 is_stmt 1 view .LVU54
+ 177              		.loc 1 376 8 is_stmt 0 view .LVU55
+ 178 008a 0028     		cmp	r0, #0
+ 179 008c 0AD0     		beq	.L2
+ 377:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 378:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->StateMachine |= SMBUS_SMS_ERROR;
+ 180              		.loc 1 378 7 is_stmt 1 view .LVU56
+ 181              		.loc 1 378 20 is_stmt 0 view .LVU57
+ 182 008e 2268     		ldr	r2, [r4]
+ 183              		.loc 1 378 35 view .LVU58
+ 184 0090 8023     		movs	r3, #128
+ 185 0092 9B00     		lsls	r3, r3, #2
+ 186 0094 1343     		orrs	r3, r2
+ 187 0096 2360     		str	r3, [r4]
+ 188 0098 04E0     		b	.L2
+ 189              	.LVL14:
+ 190              	.L4:
+ 348:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 11
+
+
+ 191              		.loc 1 348 9 is_stmt 1 view .LVU59
+ 348:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 192              		.loc 1 348 24 is_stmt 0 view .LVU60
+ 193 009a AB78     		ldrb	r3, [r5, #2]
+ 194              	.LVL15:
+ 348:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 195              		.loc 1 348 24 view .LVU61
+ 196 009c D6E7     		b	.L5
+ 197              	.LVL16:
+ 198              	.L9:
+ 315:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 199              		.loc 1 315 12 view .LVU62
+ 200 009e 0023     		movs	r3, #0
+ 201 00a0 DDE7     		b	.L3
+ 202              	.LVL17:
+ 203              	.L7:
+ 296:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint16_t              size;
+ 204              		.loc 1 296 25 view .LVU63
+ 205 00a2 0120     		movs	r0, #1
+ 206              	.LVL18:
+ 207              	.L2:
+ 379:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 380:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   }
+ 381:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   return result;
+ 208              		.loc 1 381 3 is_stmt 1 view .LVU64
+ 382:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** }
+ 209              		.loc 1 382 1 is_stmt 0 view .LVU65
+ 210 00a4 05B0     		add	sp, sp, #20
+ 211              		@ sp needed
+ 212              	.LVL19:
+ 213              	.LVL20:
+ 214              		.loc 1 382 1 view .LVU66
+ 215 00a6 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 216              		.cfi_endproc
+ 217              	.LFE40:
+ 219              		.section	.text.STACK_SMBUS_LocateCommand,"ax",%progbits
+ 220              		.align	1
+ 221              		.weak	STACK_SMBUS_LocateCommand
+ 222              		.syntax unified
+ 223              		.code	16
+ 224              		.thumb_func
+ 226              	STACK_SMBUS_LocateCommand:
+ 227              	.LVL21:
+ 228              	.LFB41:
+ 383:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 384:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 385:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+ 386:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @brief  a version of the default SMBUS implementation with support for
+ 387:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *       PMBus extended command
+ 388:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 389:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *                the configuration information for the specified SMBUS.
+ 390:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @retval None
+ 391:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 392:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** void STACK_SMBUS_LocateCommand( SMBUS_StackHandleTypeDef *pStackContext )
+ 393:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+ 229              		.loc 1 393 1 is_stmt 1 view -0
+ 230              		.cfi_startproc
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 12
+
+
+ 231              		@ args = 0, pretend = 0, frame = 0
+ 232              		@ frame_needed = 0, uses_anonymous_args = 0
+ 233              		.loc 1 393 1 is_stmt 0 view .LVU68
+ 234 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 235              		.cfi_def_cfa_offset 20
+ 236              		.cfi_offset 4, -20
+ 237              		.cfi_offset 5, -16
+ 238              		.cfi_offset 6, -12
+ 239              		.cfi_offset 7, -8
+ 240              		.cfi_offset 14, -4
+ 394:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint8_t       commandCode = pStackContext->Buffer[0];
+ 241              		.loc 1 394 3 is_stmt 1 view .LVU69
+ 242              		.loc 1 394 17 is_stmt 0 view .LVU70
+ 243 0002 2323     		movs	r3, #35
+ 244 0004 C65C     		ldrb	r6, [r0, r3]
+ 245              	.LVL22:
+ 395:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef DENSE_CMD_TBL
+ 396:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint32_t      current, low, top;
+ 246              		.loc 1 396 3 is_stmt 1 view .LVU71
+ 397:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif
+ 398:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 399:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef ARP
+ 400:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   if ( pStackContext->StateMachine & SMBUS_SMS_ARP_AM )
+ 401:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   {
+ 402:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     STACK_SMBUS_LocateCommandARP( pStackContext, commandCode );
+ 403:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   }
+ 404:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   else
+ 405:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif /* ARP treatment */
+ 406:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 407:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     if (commandCode == PMBC_PMBUS_COMMAND_EXT)
+ 247              		.loc 1 407 5 view .LVU72
+ 248              		.loc 1 407 8 is_stmt 0 view .LVU73
+ 249 0006 FF2E     		cmp	r6, #255
+ 250 0008 05D0     		beq	.L19
+ 408:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 409:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 410:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         May not be exactly read byte, but the stack cannot know for sure
+ 411:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****        */
+ 412:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->CurrentCommand = (st_command_t *)&EXTENDED_READ_BYTE;
+ 413:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 414:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     else
+ 415:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 416:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 417:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         Code searching for command based on command code
+ 418:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         */
+ 419:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef DENSE_CMD_TBL
+ 420:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 421:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 422:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         initializing the command code search - the table must have all commands sorted, but there m
+ 423:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****        */
+ 424:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       low = 0U;
+ 251              		.loc 1 424 7 is_stmt 1 view .LVU74
+ 252              	.LVL23:
+ 425:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       top = pStackContext->CMD_tableSize - 1U;
+ 253              		.loc 1 425 7 view .LVU75
+ 254              		.loc 1 425 26 is_stmt 0 view .LVU76
+ 255 000a 4469     		ldr	r4, [r0, #20]
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 13
+
+
+ 256              		.loc 1 425 11 view .LVU77
+ 257 000c 013C     		subs	r4, r4, #1
+ 258              	.LVL24:
+ 426:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->CurrentCommand = NULL;
+ 259              		.loc 1 426 7 is_stmt 1 view .LVU78
+ 260              		.loc 1 426 37 is_stmt 0 view .LVU79
+ 261 000e 0023     		movs	r3, #0
+ 262 0010 C360     		str	r3, [r0, #12]
+ 427:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 428:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       while ( top >= low )
+ 263              		.loc 1 428 7 is_stmt 1 view .LVU80
+ 424:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       top = pStackContext->CMD_tableSize - 1U;
+ 264              		.loc 1 424 11 is_stmt 0 view .LVU81
+ 265 0012 0025     		movs	r5, #0
+ 266              		.loc 1 428 13 view .LVU82
+ 267 0014 05E0     		b	.L14
+ 268              	.LVL25:
+ 269              	.L19:
+ 412:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 270              		.loc 1 412 7 is_stmt 1 view .LVU83
+ 412:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 271              		.loc 1 412 37 is_stmt 0 view .LVU84
+ 272 0016 094B     		ldr	r3, .L21
+ 273 0018 C360     		str	r3, [r0, #12]
+ 274              	.L11:
+ 429:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       {
+ 430:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         /*
+ 431:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           Pick interval half
+ 432:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****          */
+ 433:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         current = ( low + top ) >> 1U;
+ 434:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         if (pStackContext->CMD_table[current].cmnd_code == commandCode)
+ 435:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 436:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           /*
+ 437:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****             we have found our command
+ 438:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****            */
+ 439:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           pStackContext->CurrentCommand = &(pStackContext->CMD_table[current]);
+ 440:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           return;
+ 441:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         }
+ 442:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         else if (pStackContext->CMD_table[current].cmnd_code < commandCode)
+ 443:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 444:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           /*
+ 445:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****             Look at upper half
+ 446:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           */
+ 447:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           low = current + 1U;
+ 448:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         }
+ 449:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         else
+ 450:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 451:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           top = current - 1U;
+ 452:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         }
+ 453:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 454:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #else
+ 455:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 456:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       Simple command table - command code equals the table index
+ 457:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 458:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->CurrentCommand = &(pStackContext->CMD_table[commandCode]);
+ 459:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 460:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /* a sanity check */
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 14
+
+
+ 461:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       if ( pStackContext->CurrentCommand->cmnd_code != commandCode )
+ 462:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       {
+ 463:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         pStackContext->CurrentCommand = NULL;
+ 464:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 465:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #endif /* DENSE_CMD_TBL */
+ 466:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 467:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** }
+ 275              		.loc 1 467 1 view .LVU85
+ 276              		@ sp needed
+ 277              	.LVL26:
+ 278              		.loc 1 467 1 view .LVU86
+ 279 001a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 280              	.LVL27:
+ 281              	.L20:
+ 439:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           return;
+ 282              		.loc 1 439 11 is_stmt 1 view .LVU87
+ 439:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           return;
+ 283              		.loc 1 439 41 is_stmt 0 view .LVU88
+ 284 001c C760     		str	r7, [r0, #12]
+ 440:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         }
+ 285              		.loc 1 440 11 is_stmt 1 view .LVU89
+ 286 001e FCE7     		b	.L11
+ 287              	.L16:
+ 451:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         }
+ 288              		.loc 1 451 11 view .LVU90
+ 451:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         }
+ 289              		.loc 1 451 15 is_stmt 0 view .LVU91
+ 290 0020 5C1E     		subs	r4, r3, #1
+ 291              	.LVL28:
+ 292              	.L14:
+ 428:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       {
+ 293              		.loc 1 428 19 is_stmt 1 view .LVU92
+ 294 0022 A542     		cmp	r5, r4
+ 295 0024 F9D8     		bhi	.L11
+ 433:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         if (pStackContext->CMD_table[current].cmnd_code == commandCode)
+ 296              		.loc 1 433 9 view .LVU93
+ 433:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         if (pStackContext->CMD_table[current].cmnd_code == commandCode)
+ 297              		.loc 1 433 25 is_stmt 0 view .LVU94
+ 298 0026 2B19     		adds	r3, r5, r4
+ 433:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         if (pStackContext->CMD_table[current].cmnd_code == commandCode)
+ 299              		.loc 1 433 17 view .LVU95
+ 300 0028 5B08     		lsrs	r3, r3, #1
+ 301              	.LVL29:
+ 434:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 302              		.loc 1 434 9 is_stmt 1 view .LVU96
+ 434:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 303              		.loc 1 434 26 is_stmt 0 view .LVU97
+ 304 002a 0169     		ldr	r1, [r0, #16]
+ 434:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 305              		.loc 1 434 37 view .LVU98
+ 306 002c 9A00     		lsls	r2, r3, #2
+ 307 002e 8F18     		adds	r7, r1, r2
+ 434:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 308              		.loc 1 434 46 view .LVU99
+ 309 0030 8A5C     		ldrb	r2, [r1, r2]
+ 434:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 310              		.loc 1 434 12 view .LVU100
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 15
+
+
+ 311 0032 B242     		cmp	r2, r6
+ 312 0034 F2D0     		beq	.L20
+ 442:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 313              		.loc 1 442 14 is_stmt 1 view .LVU101
+ 442:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         {
+ 314              		.loc 1 442 17 is_stmt 0 view .LVU102
+ 315 0036 F3D2     		bcs	.L16
+ 447:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         }
+ 316              		.loc 1 447 11 is_stmt 1 view .LVU103
+ 447:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         }
+ 317              		.loc 1 447 15 is_stmt 0 view .LVU104
+ 318 0038 5D1C     		adds	r5, r3, #1
+ 319              	.LVL30:
+ 447:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         }
+ 320              		.loc 1 447 15 view .LVU105
+ 321 003a F2E7     		b	.L14
+ 322              	.L22:
+ 323              		.align	2
+ 324              	.L21:
+ 325 003c 00000000 		.word	EXTENDED_READ_BYTE
+ 326              		.cfi_endproc
+ 327              	.LFE41:
+ 329              		.section	.text.STACK_PMBUS_MasterZoneWrite,"ax",%progbits
+ 330              		.align	1
+ 331              		.global	STACK_PMBUS_MasterZoneWrite
+ 332              		.syntax unified
+ 333              		.code	16
+ 334              		.thumb_func
+ 336              	STACK_PMBUS_MasterZoneWrite:
+ 337              	.LVL31:
+ 338              	.LFB42:
+ 468:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 469:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 470:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** #ifdef  PMBUS13 /* Zone commands were introduced in v1.3 */
+ 471:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 472:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+ 473:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @brief  PMBUS zone write command transmit, direction is implicitly write.
+ 474:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 475:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *                the configuration information for the specified SMBUS.
+ 476:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pCommand : description of the command to be transmitted, NULL for quick command
+ 477:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  zone : the zone context in which the command executes
+ 478:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @retval SMBus stack return code
+ 479:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 480:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** HAL_StatusTypeDef STACK_PMBUS_MasterZoneWrite(SMBUS_StackHandleTypeDef *pStackContext, st_command_t
+ 481:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+ 339              		.loc 1 481 1 is_stmt 1 view -0
+ 340              		.cfi_startproc
+ 341              		@ args = 0, pretend = 0, frame = 0
+ 342              		@ frame_needed = 0, uses_anonymous_args = 0
+ 343              		.loc 1 481 1 is_stmt 0 view .LVU107
+ 344 0000 70B5     		push	{r4, r5, r6, lr}
+ 345              		.cfi_def_cfa_offset 16
+ 346              		.cfi_offset 4, -16
+ 347              		.cfi_offset 5, -12
+ 348              		.cfi_offset 6, -8
+ 349              		.cfi_offset 14, -4
+ 350 0002 82B0     		sub	sp, sp, #8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 16
+
+
+ 351              		.cfi_def_cfa_offset 24
+ 352 0004 0400     		movs	r4, r0
+ 353 0006 0D00     		movs	r5, r1
+ 482:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   HAL_StatusTypeDef     result = STACK_ERROR;
+ 354              		.loc 1 482 3 is_stmt 1 view .LVU108
+ 355              	.LVL32:
+ 483:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint16_t              size;
+ 356              		.loc 1 483 3 view .LVU109
+ 484:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint32_t              xFerOptions = SMBUS_FIRST_FRAME;
+ 357              		.loc 1 484 3 view .LVU110
+ 485:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 486:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   /*
+ 487:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     First check status of the SMBUS - no transaction ongoing, and that the command is write directi
+ 488:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 489:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   if (( ((pStackContext->StateMachine) & SMBUS_SMS_ACTIVE_MASK) == 0U ) && ( ( pCommand->cmnd_query
+ 358              		.loc 1 489 3 view .LVU111
+ 359              		.loc 1 489 24 is_stmt 0 view .LVU112
+ 360 0008 0368     		ldr	r3, [r0]
+ 361              		.loc 1 489 40 view .LVU113
+ 362 000a 5E22     		movs	r2, #94
+ 363 000c 1600     		movs	r6, r2
+ 364 000e 1E40     		ands	r6, r3
+ 365              		.loc 1 489 6 view .LVU114
+ 366 0010 1A42     		tst	r2, r3
+ 367 0012 42D1     		bne	.L28
+ 368              		.loc 1 489 88 discriminator 1 view .LVU115
+ 369 0014 4B78     		ldrb	r3, [r1, #1]
+ 370              		.loc 1 489 73 discriminator 1 view .LVU116
+ 371 0016 5B06     		lsls	r3, r3, #25
+ 372 0018 01D4     		bmi	.L31
+ 482:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint16_t              size;
+ 373              		.loc 1 482 25 view .LVU117
+ 374 001a 0120     		movs	r0, #1
+ 375              	.LVL33:
+ 482:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint16_t              size;
+ 376              		.loc 1 482 25 view .LVU118
+ 377 001c 3EE0     		b	.L24
+ 378              	.LVL34:
+ 379              	.L31:
+ 490:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   {
+ 491:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 492:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     becoming master, not listening any more
+ 493:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     */
+ 494:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     HAL_SMBUS_DisableListen_IT( pStackContext->Device );
+ 380              		.loc 1 494 5 is_stmt 1 view .LVU119
+ 381 001e 4068     		ldr	r0, [r0, #4]
+ 382              	.LVL35:
+ 383              		.loc 1 494 5 is_stmt 0 view .LVU120
+ 384 0020 FFF7FEFF 		bl	HAL_SMBUS_DisableListen_IT
+ 385              	.LVL36:
+ 495:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 496:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     if ( pCommand == NULL )
+ 386              		.loc 1 496 5 is_stmt 1 view .LVU121
+ 387              		.loc 1 496 8 is_stmt 0 view .LVU122
+ 388 0024 002D     		cmp	r5, #0
+ 389 0026 36D0     		beq	.L30
+ 497:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 17
+
+
+ 498:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 499:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         quick command case
+ 500:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         */
+ 501:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       size = 0U;
+ 502:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 503:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     else
+ 504:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 505:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 506:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       the command must support write mode, otherwise is unusable for zone
+ 507:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 508:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->OpMode = pCommand->cmnd_query & BLOCK_WRITE;
+ 390              		.loc 1 508 7 is_stmt 1 view .LVU123
+ 391              		.loc 1 508 39 is_stmt 0 view .LVU124
+ 392 0028 6A78     		ldrb	r2, [r5, #1]
+ 393              		.loc 1 508 52 view .LVU125
+ 394 002a 5023     		movs	r3, #80
+ 395 002c 1340     		ands	r3, r2
+ 396              		.loc 1 508 29 view .LVU126
+ 397 002e 2122     		movs	r2, #33
+ 398 0030 A354     		strb	r3, [r4, r2]
+ 509:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 510:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 511:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         Remembering the address and command code for case of further processing of non-trivial comm
+ 512:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 513:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->SlaveAddress = SMBUS_ADDR_ZONE_WRITE;
+ 399              		.loc 1 513 7 is_stmt 1 view .LVU127
+ 400              		.loc 1 513 35 is_stmt 0 view .LVU128
+ 401 0032 6E23     		movs	r3, #110
+ 402 0034 E383     		strh	r3, [r4, #30]
+ 514:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->CurrentCommand = pCommand;
+ 403              		.loc 1 514 7 is_stmt 1 view .LVU129
+ 404              		.loc 1 514 37 is_stmt 0 view .LVU130
+ 405 0036 E560     		str	r5, [r4, #12]
+ 515:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 516:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       /*
+ 517:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       First byte, the command code is transmitted
+ 518:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 519:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->Buffer[0] = pCommand->cmnd_code;
+ 406              		.loc 1 519 7 is_stmt 1 view .LVU131
+ 407              		.loc 1 519 42 is_stmt 0 view .LVU132
+ 408 0038 2A78     		ldrb	r2, [r5]
+ 409              		.loc 1 519 32 view .LVU133
+ 410 003a 4B3B     		subs	r3, r3, #75
+ 411 003c E254     		strb	r2, [r4, r3]
+ 520:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 521:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       if ( pCommand->cmnd_query & BLOCK )
+ 412              		.loc 1 521 7 is_stmt 1 view .LVU134
+ 413              		.loc 1 521 20 is_stmt 0 view .LVU135
+ 414 003e 6B78     		ldrb	r3, [r5, #1]
+ 415              		.loc 1 521 10 view .LVU136
+ 416 0040 DB06     		lsls	r3, r3, #27
+ 417 0042 26D5     		bpl	.L26
+ 522:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       {
+ 523:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         /*
+ 524:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****             Block write with data size prepared in the buffer.
+ 525:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****           */
+ 526:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         size = 2U + (uint16_t)(pStackContext->Buffer[1]);            /* 1 cmd code + 1 count + data
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 18
+
+
+ 418              		.loc 1 526 9 is_stmt 1 view .LVU137
+ 419              		.loc 1 526 53 is_stmt 0 view .LVU138
+ 420 0044 2423     		movs	r3, #36
+ 421 0046 E35C     		ldrb	r3, [r4, r3]
+ 422              		.loc 1 526 14 view .LVU139
+ 423 0048 0233     		adds	r3, r3, #2
+ 424              	.LVL37:
+ 425              	.L27:
+ 527:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 528:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       else
+ 529:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       {
+ 530:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         /*
+ 531:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         fixed size write
+ 532:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         */
+ 533:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         size = pCommand->cmnd_master_Tx_size;
+ 534:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 535:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 536:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       xFerOptions |= ( pStackContext->StateMachine & SMBUS_SMS_PEC_ACTIVE );
+ 426              		.loc 1 536 7 is_stmt 1 view .LVU140
+ 427              		.loc 1 536 37 is_stmt 0 view .LVU141
+ 428 004a 2168     		ldr	r1, [r4]
+ 429              		.loc 1 536 52 view .LVU142
+ 430 004c 8022     		movs	r2, #128
+ 431 004e D204     		lsls	r2, r2, #19
+ 432 0050 0E00     		movs	r6, r1
+ 433 0052 1640     		ands	r6, r2
+ 434              	.LVL38:
+ 537:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       if ((pStackContext->StateMachine & SMBUS_SMS_PEC_ACTIVE ) == SMBUS_SMS_PEC_ACTIVE )
+ 435              		.loc 1 537 7 is_stmt 1 view .LVU143
+ 436              		.loc 1 537 10 is_stmt 0 view .LVU144
+ 437 0054 1142     		tst	r1, r2
+ 438 0056 01D0     		beq	.L25
+ 538:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       {
+ 539:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****         size += 1U;
+ 439              		.loc 1 539 9 is_stmt 1 view .LVU145
+ 440              		.loc 1 539 14 is_stmt 0 view .LVU146
+ 441 0058 0133     		adds	r3, r3, #1
+ 442              	.LVL39:
+ 443              		.loc 1 539 14 view .LVU147
+ 444 005a 9BB2     		uxth	r3, r3
+ 445              	.LVL40:
+ 446              	.L25:
+ 540:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 541:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 542:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 543:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 544:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       finishing transmission
+ 545:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****      */
+ 546:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     xFerOptions |= SMBUS_LAST_FRAME_NO_PEC;
+ 447              		.loc 1 546 5 is_stmt 1 view .LVU148
+ 448              		.loc 1 546 17 is_stmt 0 view .LVU149
+ 449 005c 8021     		movs	r1, #128
+ 450 005e 8904     		lsls	r1, r1, #18
+ 451 0060 3143     		orrs	r1, r6
+ 452              	.LVL41:
+ 547:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 548:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 19
+
+
+ 549:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       Initiating a transmission
+ 550:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 551:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine |= SMBUS_SMS_TRANSMIT;
+ 453              		.loc 1 551 5 is_stmt 1 view .LVU150
+ 454              		.loc 1 551 18 is_stmt 0 view .LVU151
+ 455 0062 2268     		ldr	r2, [r4]
+ 456              		.loc 1 551 33 view .LVU152
+ 457 0064 0220     		movs	r0, #2
+ 458 0066 1500     		movs	r5, r2
+ 459              	.LVL42:
+ 460              		.loc 1 551 33 view .LVU153
+ 461 0068 0543     		orrs	r5, r0
+ 462 006a 2560     		str	r5, [r4]
+ 552:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine &= ~SMBUS_SMS_READY;
+ 463              		.loc 1 552 5 is_stmt 1 view .LVU154
+ 464              		.loc 1 552 33 is_stmt 0 view .LVU155
+ 465 006c 0125     		movs	r5, #1
+ 466 006e AA43     		bics	r2, r5
+ 467 0070 0243     		orrs	r2, r0
+ 468 0072 2260     		str	r2, [r4]
+ 553:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 554:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 555:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       Sending the data and logging the result
+ 556:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       */
+ 557:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     result = HAL_SMBUS_Master_Transmit_IT( pStackContext->Device, SMBUS_ADDR_ZONE_WRITE, pStackCont
+ 469              		.loc 1 557 5 is_stmt 1 view .LVU156
+ 470              		.loc 1 557 14 is_stmt 0 view .LVU157
+ 471 0074 6068     		ldr	r0, [r4, #4]
+ 472 0076 0091     		str	r1, [sp]
+ 473 0078 2200     		movs	r2, r4
+ 474 007a 2332     		adds	r2, r2, #35
+ 475 007c 6E21     		movs	r1, #110
+ 476              	.LVL43:
+ 477              		.loc 1 557 14 view .LVU158
+ 478 007e FFF7FEFF 		bl	HAL_SMBUS_Master_Transmit_IT
+ 479              	.LVL44:
+ 558:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****                                            xFerOptions );
+ 559:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     if (result != HAL_OK )
+ 480              		.loc 1 559 5 is_stmt 1 view .LVU159
+ 481              		.loc 1 559 8 is_stmt 0 view .LVU160
+ 482 0082 0028     		cmp	r0, #0
+ 483 0084 0AD0     		beq	.L24
+ 560:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 561:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->StateMachine |= SMBUS_SMS_ERROR;
+ 484              		.loc 1 561 7 is_stmt 1 view .LVU161
+ 485              		.loc 1 561 20 is_stmt 0 view .LVU162
+ 486 0086 2268     		ldr	r2, [r4]
+ 487              		.loc 1 561 35 view .LVU163
+ 488 0088 8023     		movs	r3, #128
+ 489              	.LVL45:
+ 490              		.loc 1 561 35 view .LVU164
+ 491 008a 9B00     		lsls	r3, r3, #2
+ 492              	.LVL46:
+ 493              		.loc 1 561 35 view .LVU165
+ 494 008c 1343     		orrs	r3, r2
+ 495 008e 2360     		str	r3, [r4]
+ 496 0090 04E0     		b	.L24
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 20
+
+
+ 497              	.LVL47:
+ 498              	.L26:
+ 533:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 499              		.loc 1 533 9 is_stmt 1 view .LVU166
+ 533:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 500              		.loc 1 533 24 is_stmt 0 view .LVU167
+ 501 0092 AB78     		ldrb	r3, [r5, #2]
+ 502              	.LVL48:
+ 533:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       }
+ 503              		.loc 1 533 24 view .LVU168
+ 504 0094 D9E7     		b	.L27
+ 505              	.LVL49:
+ 506              	.L30:
+ 501:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 507              		.loc 1 501 12 view .LVU169
+ 508 0096 0023     		movs	r3, #0
+ 509 0098 E0E7     		b	.L25
+ 510              	.LVL50:
+ 511              	.L28:
+ 482:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint16_t              size;
+ 512              		.loc 1 482 25 view .LVU170
+ 513 009a 0120     		movs	r0, #1
+ 514              	.LVL51:
+ 515              	.L24:
+ 562:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 563:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   }
+ 564:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   return result;
+ 516              		.loc 1 564 3 is_stmt 1 view .LVU171
+ 565:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** }
+ 517              		.loc 1 565 1 is_stmt 0 view .LVU172
+ 518 009c 02B0     		add	sp, sp, #8
+ 519              		@ sp needed
+ 520              	.LVL52:
+ 521              		.loc 1 565 1 view .LVU173
+ 522 009e 70BD     		pop	{r4, r5, r6, pc}
+ 523              		.cfi_endproc
+ 524              	.LFE42:
+ 526              		.section	.text.STACK_PMBUS_MasterZoneConfig,"ax",%progbits
+ 527              		.align	1
+ 528              		.global	STACK_PMBUS_MasterZoneConfig
+ 529              		.syntax unified
+ 530              		.code	16
+ 531              		.thumb_func
+ 533              	STACK_PMBUS_MasterZoneConfig:
+ 534              	.LVL53:
+ 535              	.LFB43:
+ 566:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 567:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+ 568:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @brief  PMBUS zone config command transmit, direction is implicitly write.
+ 569:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 570:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *                the configuration information for the specified SMBUS.
+ 571:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  address : address of the device to be configured
+ 572:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  zone : the zone context to be configured
+ 573:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @retval SMBus stack return code
+ 574:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 575:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** HAL_StatusTypeDef STACK_PMBUS_MasterZoneConfig(SMBUS_StackHandleTypeDef *pStackContext, uint16_t ad
+ 576:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     SMBUS_ZoneStateTypeDef *zone)
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 21
+
+
+ 577:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+ 536              		.loc 1 577 1 is_stmt 1 view -0
+ 537              		.cfi_startproc
+ 538              		@ args = 0, pretend = 0, frame = 0
+ 539              		@ frame_needed = 0, uses_anonymous_args = 0
+ 540              		.loc 1 577 1 is_stmt 0 view .LVU175
+ 541 0000 10B5     		push	{r4, lr}
+ 542              		.cfi_def_cfa_offset 8
+ 543              		.cfi_offset 4, -8
+ 544              		.cfi_offset 14, -4
+ 578:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   pStackContext->Buffer[1] = zone->writeZone;
+ 545              		.loc 1 578 3 is_stmt 1 view .LVU176
+ 546              		.loc 1 578 34 is_stmt 0 view .LVU177
+ 547 0002 5478     		ldrb	r4, [r2, #1]
+ 548              		.loc 1 578 28 view .LVU178
+ 549 0004 2423     		movs	r3, #36
+ 550 0006 C454     		strb	r4, [r0, r3]
+ 579:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   pStackContext->Buffer[2] = zone->readZone;
+ 551              		.loc 1 579 3 is_stmt 1 view .LVU179
+ 552              		.loc 1 579 34 is_stmt 0 view .LVU180
+ 553 0008 1278     		ldrb	r2, [r2]
+ 554              	.LVL54:
+ 555              		.loc 1 579 28 view .LVU181
+ 556 000a 0133     		adds	r3, r3, #1
+ 557 000c C254     		strb	r2, [r0, r3]
+ 580:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   return STACK_SMBUS_HostCommand( pStackContext, (st_command_t *)&PMBUS_COMMANDS_TAB[PMBC_ZONE_CONF
+ 558              		.loc 1 580 3 is_stmt 1 view .LVU182
+ 559              		.loc 1 580 10 is_stmt 0 view .LVU183
+ 560 000e 034C     		ldr	r4, .L33
+ 561 0010 1B33     		adds	r3, r3, #27
+ 562 0012 0A00     		movs	r2, r1
+ 563 0014 2100     		movs	r1, r4
+ 564              	.LVL55:
+ 565              		.loc 1 580 10 view .LVU184
+ 566 0016 FFF7FEFF 		bl	STACK_SMBUS_HostCommand
+ 567              	.LVL56:
+ 581:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** }
+ 568              		.loc 1 581 1 view .LVU185
+ 569              		@ sp needed
+ 570 001a 10BD     		pop	{r4, pc}
+ 571              	.L34:
+ 572              		.align	2
+ 573              	.L33:
+ 574 001c 1C000000 		.word	PMBUS_COMMANDS_TAB+28
+ 575              		.cfi_endproc
+ 576              	.LFE43:
+ 578              		.section	.text.STACK_PMBUS_MasterZoneActive,"ax",%progbits
+ 579              		.align	1
+ 580              		.global	STACK_PMBUS_MasterZoneActive
+ 581              		.syntax unified
+ 582              		.code	16
+ 583              		.thumb_func
+ 585              	STACK_PMBUS_MasterZoneActive:
+ 586              	.LVL57:
+ 587              	.LFB44:
+ 582:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 583:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 22
+
+
+ 584:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @brief  PMBUS zone active command transmit, direction is implicitly write.
+ 585:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 586:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *                the configuration information for the specified SMBUS.
+ 587:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  zone : the zones to be activated
+ 588:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @retval SMBus stack return code
+ 589:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 590:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** HAL_StatusTypeDef STACK_PMBUS_MasterZoneActive(SMBUS_StackHandleTypeDef *pStackContext, SMBUS_ZoneS
+ 591:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+ 588              		.loc 1 591 1 is_stmt 1 view -0
+ 589              		.cfi_startproc
+ 590              		@ args = 0, pretend = 0, frame = 0
+ 591              		@ frame_needed = 0, uses_anonymous_args = 0
+ 592              		.loc 1 591 1 is_stmt 0 view .LVU187
+ 593 0000 10B5     		push	{r4, lr}
+ 594              		.cfi_def_cfa_offset 8
+ 595              		.cfi_offset 4, -8
+ 596              		.cfi_offset 14, -4
+ 592:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   pStackContext->Buffer[1] = zone->activeWriteZone;
+ 597              		.loc 1 592 3 is_stmt 1 view .LVU188
+ 598              		.loc 1 592 34 is_stmt 0 view .LVU189
+ 599 0002 CA78     		ldrb	r2, [r1, #3]
+ 600              		.loc 1 592 28 view .LVU190
+ 601 0004 2423     		movs	r3, #36
+ 602 0006 C254     		strb	r2, [r0, r3]
+ 593:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   pStackContext->Buffer[2] = zone->activeReadZone;
+ 603              		.loc 1 593 3 is_stmt 1 view .LVU191
+ 604              		.loc 1 593 34 is_stmt 0 view .LVU192
+ 605 0008 8A78     		ldrb	r2, [r1, #2]
+ 606              		.loc 1 593 28 view .LVU193
+ 607 000a 0133     		adds	r3, r3, #1
+ 608 000c C254     		strb	r2, [r0, r3]
+ 594:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   return STACK_SMBUS_HostCommand( pStackContext, (st_command_t *)&PMBUS_COMMANDS_TAB[PMBC_ZONE_ACTI
+ 609              		.loc 1 594 3 is_stmt 1 view .LVU194
+ 610              		.loc 1 594 10 is_stmt 0 view .LVU195
+ 611 000e 0349     		ldr	r1, .L36
+ 612              	.LVL58:
+ 613              		.loc 1 594 10 view .LVU196
+ 614 0010 1B33     		adds	r3, r3, #27
+ 615 0012 6E22     		movs	r2, #110
+ 616 0014 FFF7FEFF 		bl	STACK_SMBUS_HostCommand
+ 617              	.LVL59:
+ 595:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****                                   SMBUS_ADDR_ZONE_WRITE, WRITE );
+ 596:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** }
+ 618              		.loc 1 596 1 view .LVU197
+ 619              		@ sp needed
+ 620 0018 10BD     		pop	{r4, pc}
+ 621              	.L37:
+ 622 001a C046     		.align	2
+ 623              	.L36:
+ 624 001c 20000000 		.word	PMBUS_COMMANDS_TAB+32
+ 625              		.cfi_endproc
+ 626              	.LFE44:
+ 628              		.section	.text.STACK_PMBUS_MasterReadZoneStatus,"ax",%progbits
+ 629              		.align	1
+ 630              		.global	STACK_PMBUS_MasterReadZoneStatus
+ 631              		.syntax unified
+ 632              		.code	16
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 23
+
+
+ 633              		.thumb_func
+ 635              	STACK_PMBUS_MasterReadZoneStatus:
+ 636              	.LVL60:
+ 637              	.LFB45:
+ 597:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 598:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+ 599:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @brief  PMBUS zone read command initiation, simple implementation limited to status retrieve fr
+ 600:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 601:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *                the configuration information for the specified SMBUS.
+ 602:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  ccode : command control code
+ 603:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  mask : status mask
+ 604:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @retval SMBus stack return code
+ 605:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 606:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** HAL_StatusTypeDef STACK_PMBUS_MasterReadZoneStatus(SMBUS_StackHandleTypeDef *pStackContext, uint8_t
+ 607:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+ 638              		.loc 1 607 1 is_stmt 1 view -0
+ 639              		.cfi_startproc
+ 640              		@ args = 0, pretend = 0, frame = 0
+ 641              		@ frame_needed = 0, uses_anonymous_args = 0
+ 642              		.loc 1 607 1 is_stmt 0 view .LVU199
+ 643 0000 70B5     		push	{r4, r5, r6, lr}
+ 644              		.cfi_def_cfa_offset 16
+ 645              		.cfi_offset 4, -16
+ 646              		.cfi_offset 5, -12
+ 647              		.cfi_offset 6, -8
+ 648              		.cfi_offset 14, -4
+ 649 0002 82B0     		sub	sp, sp, #8
+ 650              		.cfi_def_cfa_offset 24
+ 651 0004 0400     		movs	r4, r0
+ 652 0006 0E00     		movs	r6, r1
+ 653 0008 1500     		movs	r5, r2
+ 608:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   HAL_StatusTypeDef     result = STACK_ERROR;
+ 654              		.loc 1 608 3 is_stmt 1 view .LVU200
+ 655              	.LVL61:
+ 609:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 610:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   /*
+ 611:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     First check status of the SMBUS - no transaction ongoing
+ 612:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****    */
+ 613:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   if (((pStackContext->StateMachine) & SMBUS_SMS_ACTIVE_MASK) == 0U )
+ 656              		.loc 1 613 3 view .LVU201
+ 657              		.loc 1 613 22 is_stmt 0 view .LVU202
+ 658 000a 0368     		ldr	r3, [r0]
+ 659              		.loc 1 613 38 view .LVU203
+ 660 000c 5E22     		movs	r2, #94
+ 661              	.LVL62:
+ 662              		.loc 1 613 6 view .LVU204
+ 663 000e 1A42     		tst	r2, r3
+ 664 0010 02D0     		beq	.L41
+ 608:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   HAL_StatusTypeDef     result = STACK_ERROR;
+ 665              		.loc 1 608 25 view .LVU205
+ 666 0012 0120     		movs	r0, #1
+ 667              	.LVL63:
+ 668              	.L39:
+ 614:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   {
+ 615:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 616:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       Becoming master, not listening any more
+ 617:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****      */
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 24
+
+
+ 618:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     HAL_SMBUS_DisableListen_IT( pStackContext->Device );
+ 619:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 620:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 621:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       Remembering the address and command code for case of further processing of non-trivial comman
+ 622:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     */
+ 623:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->SlaveAddress = SMBUS_ADDR_ZONE_READ;
+ 624:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->CurrentCommand = NULL;
+ 625:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 626:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 627:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       First byte, the command code is transmitted
+ 628:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     */
+ 629:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->Buffer[0] = ccode;
+ 630:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->Buffer[1] = mask;
+ 631:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 632:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 633:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       Initiating a transmission
+ 634:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****      */
+ 635:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine |= SMBUS_SMS_TRANSMIT;
+ 636:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine &= ~SMBUS_SMS_READY;
+ 637:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 638:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /*
+ 639:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       Sending the data and logging the result
+ 640:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****      */
+ 641:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     result = HAL_SMBUS_Master_Transmit_IT( pStackContext->Device, SMBUS_ADDR_ZONE_READ, pStackConte
+ 642:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****                                            SMBUS_FIRST_FRAME );
+ 643:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     if (result != HAL_OK )
+ 644:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 645:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****       pStackContext->StateMachine |= SMBUS_SMS_ERROR;
+ 646:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 647:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   }
+ 648:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   return result;
+ 669              		.loc 1 648 3 is_stmt 1 view .LVU206
+ 649:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** }
+ 670              		.loc 1 649 1 is_stmt 0 view .LVU207
+ 671 0014 02B0     		add	sp, sp, #8
+ 672              		@ sp needed
+ 673              	.LVL64:
+ 674              		.loc 1 649 1 view .LVU208
+ 675 0016 70BD     		pop	{r4, r5, r6, pc}
+ 676              	.LVL65:
+ 677              	.L41:
+ 618:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 678              		.loc 1 618 5 is_stmt 1 view .LVU209
+ 679 0018 4068     		ldr	r0, [r0, #4]
+ 680              	.LVL66:
+ 618:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 681              		.loc 1 618 5 is_stmt 0 view .LVU210
+ 682 001a FFF7FEFF 		bl	HAL_SMBUS_DisableListen_IT
+ 683              	.LVL67:
+ 623:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->CurrentCommand = NULL;
+ 684              		.loc 1 623 5 is_stmt 1 view .LVU211
+ 623:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->CurrentCommand = NULL;
+ 685              		.loc 1 623 33 is_stmt 0 view .LVU212
+ 686 001e 5023     		movs	r3, #80
+ 687 0020 E383     		strh	r3, [r4, #30]
+ 624:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 688              		.loc 1 624 5 is_stmt 1 view .LVU213
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 25
+
+
+ 624:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 689              		.loc 1 624 35 is_stmt 0 view .LVU214
+ 690 0022 0022     		movs	r2, #0
+ 691 0024 E260     		str	r2, [r4, #12]
+ 629:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->Buffer[1] = mask;
+ 692              		.loc 1 629 5 is_stmt 1 view .LVU215
+ 629:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->Buffer[1] = mask;
+ 693              		.loc 1 629 30 is_stmt 0 view .LVU216
+ 694 0026 2D3B     		subs	r3, r3, #45
+ 695 0028 E654     		strb	r6, [r4, r3]
+ 630:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 696              		.loc 1 630 5 is_stmt 1 view .LVU217
+ 630:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 697              		.loc 1 630 30 is_stmt 0 view .LVU218
+ 698 002a 0133     		adds	r3, r3, #1
+ 699 002c E554     		strb	r5, [r4, r3]
+ 635:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine &= ~SMBUS_SMS_READY;
+ 700              		.loc 1 635 5 is_stmt 1 view .LVU219
+ 635:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine &= ~SMBUS_SMS_READY;
+ 701              		.loc 1 635 18 is_stmt 0 view .LVU220
+ 702 002e 2368     		ldr	r3, [r4]
+ 635:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine &= ~SMBUS_SMS_READY;
+ 703              		.loc 1 635 33 view .LVU221
+ 704 0030 0221     		movs	r1, #2
+ 705 0032 1800     		movs	r0, r3
+ 706 0034 0843     		orrs	r0, r1
+ 707 0036 2060     		str	r0, [r4]
+ 636:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 708              		.loc 1 636 5 is_stmt 1 view .LVU222
+ 636:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 709              		.loc 1 636 33 is_stmt 0 view .LVU223
+ 710 0038 0120     		movs	r0, #1
+ 711 003a 8343     		bics	r3, r0
+ 712 003c 0B43     		orrs	r3, r1
+ 713 003e 2360     		str	r3, [r4]
+ 641:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****                                            SMBUS_FIRST_FRAME );
+ 714              		.loc 1 641 5 is_stmt 1 view .LVU224
+ 641:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****                                            SMBUS_FIRST_FRAME );
+ 715              		.loc 1 641 14 is_stmt 0 view .LVU225
+ 716 0040 6068     		ldr	r0, [r4, #4]
+ 717 0042 0092     		str	r2, [sp]
+ 718 0044 0223     		movs	r3, #2
+ 719 0046 2200     		movs	r2, r4
+ 720 0048 2332     		adds	r2, r2, #35
+ 721 004a 4E31     		adds	r1, r1, #78
+ 722 004c FFF7FEFF 		bl	HAL_SMBUS_Master_Transmit_IT
+ 723              	.LVL68:
+ 643:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 724              		.loc 1 643 5 is_stmt 1 view .LVU226
+ 643:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     {
+ 725              		.loc 1 643 8 is_stmt 0 view .LVU227
+ 726 0050 0028     		cmp	r0, #0
+ 727 0052 DFD0     		beq	.L39
+ 645:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 728              		.loc 1 645 7 is_stmt 1 view .LVU228
+ 645:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 729              		.loc 1 645 20 is_stmt 0 view .LVU229
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 26
+
+
+ 730 0054 2268     		ldr	r2, [r4]
+ 645:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     }
+ 731              		.loc 1 645 35 view .LVU230
+ 732 0056 8023     		movs	r3, #128
+ 733 0058 9B00     		lsls	r3, r3, #2
+ 734 005a 1343     		orrs	r3, r2
+ 735 005c 2360     		str	r3, [r4]
+ 736 005e D9E7     		b	.L39
+ 737              		.cfi_endproc
+ 738              	.LFE45:
+ 740              		.section	.text.STACK_PMBUS_MasterZoneReadStatusCont,"ax",%progbits
+ 741              		.align	1
+ 742              		.global	STACK_PMBUS_MasterZoneReadStatusCont
+ 743              		.syntax unified
+ 744              		.code	16
+ 745              		.thumb_func
+ 747              	STACK_PMBUS_MasterZoneReadStatusCont:
+ 748              	.LVL69:
+ 749              	.LFB46:
+ 650:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 651:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+ 652:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @brief  Implementation of Zone read continuation - Master side.
+ 653:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 654:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *                the context information for the specified SMBUS stack.
+ 655:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @retval HAL_StatusTypeDef response code. STACK_OK if success, any other value means problem
+ 656:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 657:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** HAL_StatusTypeDef STACK_PMBUS_MasterZoneReadStatusCont(SMBUS_StackHandleTypeDef *pStackContext)
+ 658:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+ 750              		.loc 1 658 1 is_stmt 1 view -0
+ 751              		.cfi_startproc
+ 752              		@ args = 0, pretend = 0, frame = 0
+ 753              		@ frame_needed = 0, uses_anonymous_args = 0
+ 754              		.loc 1 658 1 is_stmt 0 view .LVU232
+ 755 0000 10B5     		push	{r4, lr}
+ 756              		.cfi_def_cfa_offset 8
+ 757              		.cfi_offset 4, -8
+ 758              		.cfi_offset 14, -4
+ 759 0002 82B0     		sub	sp, sp, #8
+ 760              		.cfi_def_cfa_offset 16
+ 761 0004 0400     		movs	r4, r0
+ 659:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   HAL_StatusTypeDef     result = STACK_ERROR;
+ 762              		.loc 1 659 3 is_stmt 1 view .LVU233
+ 763              	.LVL70:
+ 660:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 661:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   result = HAL_SMBUS_Master_Receive_IT( pStackContext->Device, SMBUS_ADDR_ZONE_READ, pStackContext-
+ 764              		.loc 1 661 3 view .LVU234
+ 765              		.loc 1 661 99 is_stmt 0 view .LVU235
+ 766 0006 0200     		movs	r2, r0
+ 767 0008 2332     		adds	r2, r2, #35
+ 768              		.loc 1 661 12 view .LVU236
+ 769 000a 4068     		ldr	r0, [r0, #4]
+ 770              	.LVL71:
+ 771              		.loc 1 661 12 view .LVU237
+ 772 000c 074B     		ldr	r3, .L44
+ 773 000e 0093     		str	r3, [sp]
+ 774 0010 0223     		movs	r3, #2
+ 775 0012 5021     		movs	r1, #80
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 27
+
+
+ 776 0014 FFF7FEFF 		bl	HAL_SMBUS_Master_Receive_IT
+ 777              	.LVL72:
+ 662:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****                                         SMBUS_OTHER_FRAME );
+ 663:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   if (result != HAL_OK )
+ 778              		.loc 1 663 3 is_stmt 1 view .LVU238
+ 779              		.loc 1 663 6 is_stmt 0 view .LVU239
+ 780 0018 0028     		cmp	r0, #0
+ 781 001a 04D0     		beq	.L43
+ 664:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   {
+ 665:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->StateMachine |= SMBUS_SMS_ERROR;
+ 782              		.loc 1 665 5 is_stmt 1 view .LVU240
+ 783              		.loc 1 665 18 is_stmt 0 view .LVU241
+ 784 001c 2268     		ldr	r2, [r4]
+ 785              		.loc 1 665 33 view .LVU242
+ 786 001e 8023     		movs	r3, #128
+ 787 0020 9B00     		lsls	r3, r3, #2
+ 788 0022 1343     		orrs	r3, r2
+ 789 0024 2360     		str	r3, [r4]
+ 790              	.L43:
+ 666:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   }
+ 667:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   return result;
+ 791              		.loc 1 667 3 is_stmt 1 view .LVU243
+ 668:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** }
+ 792              		.loc 1 668 1 is_stmt 0 view .LVU244
+ 793 0026 02B0     		add	sp, sp, #8
+ 794              		@ sp needed
+ 795              	.LVL73:
+ 796              		.loc 1 668 1 view .LVU245
+ 797 0028 10BD     		pop	{r4, pc}
+ 798              	.L45:
+ 799 002a C046     		.align	2
+ 800              	.L44:
+ 801 002c 34123412 		.word	305402420
+ 802              		.cfi_endproc
+ 803              	.LFE46:
+ 805              		.section	.text.STACK_PMBUS_ZoneReadCallback,"ax",%progbits
+ 806              		.align	1
+ 807              		.weak	STACK_PMBUS_ZoneReadCallback
+ 808              		.syntax unified
+ 809              		.code	16
+ 810              		.thumb_func
+ 812              	STACK_PMBUS_ZoneReadCallback:
+ 813              	.LVL74:
+ 814              	.LFB47:
+ 669:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 670:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** /**
+ 671:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @brief  Callback function notifying slave about Zone read.
+ 672:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  pStackContext : Pointer to a SMBUS_StackHandleTypeDef structure that contains
+ 673:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   *                the context information for the specified SMBUS stack.
+ 674:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @param  number : Indicates if this command header, or read request
+ 675:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   * @retval HAL_StatusTypeDef response code. STACK_OK if success, any other value means problem
+ 676:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   */
+ 677:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** __weak HAL_StatusTypeDef STACK_PMBUS_ZoneReadCallback( SMBUS_StackHandleTypeDef *pStackContext, uin
+ 678:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** {
+ 815              		.loc 1 678 1 is_stmt 1 view -0
+ 816              		.cfi_startproc
+ 817              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 28
+
+
+ 818              		@ frame_needed = 0, uses_anonymous_args = 0
+ 819              		@ link register save eliminated.
+ 679:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   uint8_t ccc, mask;
+ 820              		.loc 1 679 3 view .LVU247
+ 680:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 681:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   if ( number == 1U )
+ 821              		.loc 1 681 3 view .LVU248
+ 822              		.loc 1 681 6 is_stmt 0 view .LVU249
+ 823 0000 0129     		cmp	r1, #1
+ 824 0002 06D0     		beq	.L47
+ 682:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   {
+ 683:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /* Command just received, here the device should read COMMAND CONTROL CODE and Mask*/
+ 684:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     ccc = pStackContext->Buffer[0];
+ 685:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     mask =  pStackContext->Buffer[1];
+ 686:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     NOT_USED(ccc);
+ 687:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     NOT_USED(mask);
+ 688:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   }
+ 689:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   else
+ 690:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   {
+ 691:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     /* Read phase of the Zone read - arbitarry number returned by example*/
+ 692:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->Buffer[1] = 0xA5U;
+ 825              		.loc 1 692 5 is_stmt 1 view .LVU250
+ 826              		.loc 1 692 30 is_stmt 0 view .LVU251
+ 827 0004 2423     		movs	r3, #36
+ 828 0006 A522     		movs	r2, #165
+ 829 0008 C254     		strb	r2, [r0, r3]
+ 693:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     pStackContext->Buffer[2] = pStackContext->OwnAddress;
+ 830              		.loc 1 693 5 is_stmt 1 view .LVU252
+ 831              		.loc 1 693 45 is_stmt 0 view .LVU253
+ 832 000a 043B     		subs	r3, r3, #4
+ 833 000c C25C     		ldrb	r2, [r0, r3]
+ 834              		.loc 1 693 30 view .LVU254
+ 835 000e 0533     		adds	r3, r3, #5
+ 836 0010 C254     		strb	r2, [r0, r3]
+ 837              	.L47:
+ 694:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   }
+ 695:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** 
+ 696:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   /*
+ 697:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****     Returning zero means no problem with execution, if reply is expected, then it must be placed to
+ 698:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****    */
+ 699:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c ****   return STACK_OK;
+ 838              		.loc 1 699 3 is_stmt 1 view .LVU255
+ 700:Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c **** }
+ 839              		.loc 1 700 1 is_stmt 0 view .LVU256
+ 840 0012 0020     		movs	r0, #0
+ 841              	.LVL75:
+ 842              		.loc 1 700 1 view .LVU257
+ 843              		@ sp needed
+ 844 0014 7047     		bx	lr
+ 845              		.cfi_endproc
+ 846              	.LFE47:
+ 848              		.global	ZONE_READ_COMMAND
+ 849              		.section	.rodata.ZONE_READ_COMMAND,"a"
+ 850              		.align	2
+ 853              	ZONE_READ_COMMAND:
+ 854 0000 00       		.byte	0
+ 855 0001 80       		.byte	-128
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 29
+
+
+ 856 0002 02       		.byte	2
+ 857 0003 02       		.byte	2
+ 858              		.global	EXTENDED_WRITE_WORD
+ 859              		.section	.rodata.EXTENDED_WRITE_WORD,"a"
+ 860              		.align	2
+ 863              	EXTENDED_WRITE_WORD:
+ 864 0000 FF       		.byte	-1
+ 865 0001 40       		.byte	64
+ 866 0002 04       		.byte	4
+ 867 0003 00       		.byte	0
+ 868              		.global	EXTENDED_WRITE_BYTE
+ 869              		.section	.rodata.EXTENDED_WRITE_BYTE,"a"
+ 870              		.align	2
+ 873              	EXTENDED_WRITE_BYTE:
+ 874 0000 FF       		.byte	-1
+ 875 0001 40       		.byte	64
+ 876 0002 03       		.byte	3
+ 877 0003 00       		.byte	0
+ 878              		.global	EXTENDED_READ_WORD
+ 879              		.section	.rodata.EXTENDED_READ_WORD,"a"
+ 880              		.align	2
+ 883              	EXTENDED_READ_WORD:
+ 884 0000 FF       		.byte	-1
+ 885 0001 80       		.byte	-128
+ 886 0002 02       		.byte	2
+ 887 0003 02       		.byte	2
+ 888              		.global	EXTENDED_READ_BYTE
+ 889              		.section	.rodata.EXTENDED_READ_BYTE,"a"
+ 890              		.align	2
+ 893              	EXTENDED_READ_BYTE:
+ 894 0000 FF       		.byte	-1
+ 895 0001 80       		.byte	-128
+ 896 0002 02       		.byte	2
+ 897 0003 01       		.byte	1
+ 898              		.global	PMBUS_COMMANDS_TEST
+ 899              		.section	.rodata.PMBUS_COMMANDS_TEST,"a"
+ 900              		.align	2
+ 903              	PMBUS_COMMANDS_TEST:
+ 904 0000 00       		.byte	0
+ 905 0001 40       		.byte	64
+ 906 0002 00       		.byte	0
+ 907 0003 00       		.byte	0
+ 908 0004 01       		.byte	1
+ 909 0005 40       		.byte	64
+ 910 0006 02       		.byte	2
+ 911 0007 00       		.byte	0
+ 912 0008 02       		.byte	2
+ 913 0009 40       		.byte	64
+ 914 000a 03       		.byte	3
+ 915 000b 00       		.byte	0
+ 916 000c 03       		.byte	3
+ 917 000d 40       		.byte	64
+ 918 000e 05       		.byte	5
+ 919 000f 00       		.byte	0
+ 920 0010 04       		.byte	4
+ 921 0011 40       		.byte	64
+ 922 0012 09       		.byte	9
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 30
+
+
+ 923 0013 00       		.byte	0
+ 924 0014 05       		.byte	5
+ 925 0015 50       		.byte	80
+ 926 0016 03       		.byte	3
+ 927 0017 00       		.byte	0
+ 928 0018 06       		.byte	6
+ 929 0019 50       		.byte	80
+ 930 001a 0B       		.byte	11
+ 931 001b 00       		.byte	0
+ 932 001c 07       		.byte	7
+ 933 001d 20       		.byte	32
+ 934 001e 00       		.byte	0
+ 935 001f 01       		.byte	1
+ 936 0020 08       		.byte	8
+ 937 0021 20       		.byte	32
+ 938 0022 00       		.byte	0
+ 939 0023 02       		.byte	2
+ 940 0024 09       		.byte	9
+ 941 0025 20       		.byte	32
+ 942 0026 00       		.byte	0
+ 943 0027 04       		.byte	4
+ 944 0028 0A       		.byte	10
+ 945 0029 20       		.byte	32
+ 946 002a 00       		.byte	0
+ 947 002b 08       		.byte	8
+ 948 002c 0B       		.byte	11
+ 949 002d 30       		.byte	48
+ 950 002e 00       		.byte	0
+ 951 002f 04       		.byte	4
+ 952 0030 0C       		.byte	12
+ 953 0031 30       		.byte	48
+ 954 0032 00       		.byte	0
+ 955 0033 0B       		.byte	11
+ 956 0034 0D       		.byte	13
+ 957 0035 30       		.byte	48
+ 958 0036 00       		.byte	0
+ 959 0037 28       		.byte	40
+ 960 0038 0E       		.byte	14
+ 961 0039 50       		.byte	80
+ 962 003a 28       		.byte	40
+ 963 003b 00       		.byte	0
+ 964 003c 0F       		.byte	15
+ 965 003d 80       		.byte	-128
+ 966 003e 03       		.byte	3
+ 967 003f 02       		.byte	2
+ 968 0040 10       		.byte	16
+ 969 0041 90       		.byte	-112
+ 970 0042 0D       		.byte	13
+ 971 0043 09       		.byte	9
+ 972 0044 11       		.byte	17
+ 973 0045 60       		.byte	96
+ 974 0046 02       		.byte	2
+ 975 0047 02       		.byte	2
+ 976 0048 12       		.byte	18
+ 977 0049 60       		.byte	96
+ 978 004a 04       		.byte	4
+ 979 004b 04       		.byte	4
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 31
+
+
+ 980 004c 13       		.byte	19
+ 981 004d 70       		.byte	112
+ 982 004e 03       		.byte	3
+ 983 004f 01       		.byte	1
+ 984 0050 14       		.byte	20
+ 985 0051 70       		.byte	112
+ 986 0052 01       		.byte	1
+ 987 0053 03       		.byte	3
+ 988              		.global	PMBUS_COMMANDS_TAB
+ 989              		.section	.rodata.PMBUS_COMMANDS_TAB,"a"
+ 990              		.align	2
+ 993              	PMBUS_COMMANDS_TAB:
+ 994 0000 00       		.byte	0
+ 995 0001 60       		.byte	96
+ 996 0002 02       		.byte	2
+ 997 0003 01       		.byte	1
+ 998 0004 01       		.byte	1
+ 999 0005 60       		.byte	96
+ 1000 0006 02       		.byte	2
+ 1001 0007 01       		.byte	1
+ 1002 0008 02       		.byte	2
+ 1003 0009 60       		.byte	96
+ 1004 000a 02       		.byte	2
+ 1005 000b 01       		.byte	1
+ 1006 000c 03       		.byte	3
+ 1007 000d 40       		.byte	64
+ 1008 000e 01       		.byte	1
+ 1009 000f 00       		.byte	0
+ 1010 0010 04       		.byte	4
+ 1011 0011 60       		.byte	96
+ 1012 0012 02       		.byte	2
+ 1013 0013 01       		.byte	1
+ 1014 0014 05       		.byte	5
+ 1015 0015 50       		.byte	80
+ 1016 0016 03       		.byte	3
+ 1017 0017 00       		.byte	0
+ 1018 0018 06       		.byte	6
+ 1019 0019 90       		.byte	-112
+ 1020 001a 03       		.byte	3
+ 1021 001b 02       		.byte	2
+ 1022 001c 07       		.byte	7
+ 1023 001d 60       		.byte	96
+ 1024 001e 03       		.byte	3
+ 1025 001f 02       		.byte	2
+ 1026 0020 08       		.byte	8
+ 1027 0021 60       		.byte	96
+ 1028 0022 03       		.byte	3
+ 1029 0023 02       		.byte	2
+ 1030 0024 10       		.byte	16
+ 1031 0025 60       		.byte	96
+ 1032 0026 02       		.byte	2
+ 1033 0027 01       		.byte	1
+ 1034 0028 11       		.byte	17
+ 1035 0029 40       		.byte	64
+ 1036 002a 01       		.byte	1
+ 1037 002b 00       		.byte	0
+ 1038 002c 12       		.byte	18
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 32
+
+
+ 1039 002d 40       		.byte	64
+ 1040 002e 01       		.byte	1
+ 1041 002f 00       		.byte	0
+ 1042 0030 13       		.byte	19
+ 1043 0031 40       		.byte	64
+ 1044 0032 02       		.byte	2
+ 1045 0033 00       		.byte	0
+ 1046 0034 14       		.byte	20
+ 1047 0035 40       		.byte	64
+ 1048 0036 02       		.byte	2
+ 1049 0037 00       		.byte	0
+ 1050 0038 15       		.byte	21
+ 1051 0039 40       		.byte	64
+ 1052 003a 01       		.byte	1
+ 1053 003b 00       		.byte	0
+ 1054 003c 16       		.byte	22
+ 1055 003d 40       		.byte	64
+ 1056 003e 01       		.byte	1
+ 1057 003f 00       		.byte	0
+ 1058 0040 17       		.byte	23
+ 1059 0041 40       		.byte	64
+ 1060 0042 02       		.byte	2
+ 1061 0043 00       		.byte	0
+ 1062 0044 18       		.byte	24
+ 1063 0045 40       		.byte	64
+ 1064 0046 02       		.byte	2
+ 1065 0047 00       		.byte	0
+ 1066 0048 19       		.byte	25
+ 1067 0049 20       		.byte	32
+ 1068 004a 01       		.byte	1
+ 1069 004b 01       		.byte	1
+ 1070 004c 1A       		.byte	26
+ 1071 004d 80       		.byte	-128
+ 1072 004e 02       		.byte	2
+ 1073 004f 01       		.byte	1
+ 1074 0050 1B       		.byte	27
+ 1075 0051 60       		.byte	96
+ 1076 0052 03       		.byte	3
+ 1077 0053 02       		.byte	2
+ 1078 0054 20       		.byte	32
+ 1079 0055 60       		.byte	96
+ 1080 0056 02       		.byte	2
+ 1081 0057 01       		.byte	1
+ 1082 0058 21       		.byte	33
+ 1083 0059 60       		.byte	96
+ 1084 005a 03       		.byte	3
+ 1085 005b 02       		.byte	2
+ 1086 005c 22       		.byte	34
+ 1087 005d 60       		.byte	96
+ 1088 005e 03       		.byte	3
+ 1089 005f 02       		.byte	2
+ 1090 0060 23       		.byte	35
+ 1091 0061 60       		.byte	96
+ 1092 0062 03       		.byte	3
+ 1093 0063 02       		.byte	2
+ 1094 0064 24       		.byte	36
+ 1095 0065 60       		.byte	96
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 33
+
+
+ 1096 0066 03       		.byte	3
+ 1097 0067 02       		.byte	2
+ 1098 0068 25       		.byte	37
+ 1099 0069 60       		.byte	96
+ 1100 006a 03       		.byte	3
+ 1101 006b 02       		.byte	2
+ 1102 006c 26       		.byte	38
+ 1103 006d 60       		.byte	96
+ 1104 006e 03       		.byte	3
+ 1105 006f 02       		.byte	2
+ 1106 0070 27       		.byte	39
+ 1107 0071 60       		.byte	96
+ 1108 0072 03       		.byte	3
+ 1109 0073 02       		.byte	2
+ 1110 0074 28       		.byte	40
+ 1111 0075 60       		.byte	96
+ 1112 0076 03       		.byte	3
+ 1113 0077 02       		.byte	2
+ 1114 0078 29       		.byte	41
+ 1115 0079 60       		.byte	96
+ 1116 007a 03       		.byte	3
+ 1117 007b 02       		.byte	2
+ 1118 007c 2A       		.byte	42
+ 1119 007d 60       		.byte	96
+ 1120 007e 03       		.byte	3
+ 1121 007f 02       		.byte	2
+ 1122 0080 2B       		.byte	43
+ 1123 0081 60       		.byte	96
+ 1124 0082 03       		.byte	3
+ 1125 0083 02       		.byte	2
+ 1126 0084 30       		.byte	48
+ 1127 0085 90       		.byte	-112
+ 1128 0086 03       		.byte	3
+ 1129 0087 05       		.byte	5
+ 1130 0088 31       		.byte	49
+ 1131 0089 60       		.byte	96
+ 1132 008a 03       		.byte	3
+ 1133 008b 02       		.byte	2
+ 1134 008c 32       		.byte	50
+ 1135 008d 60       		.byte	96
+ 1136 008e 03       		.byte	3
+ 1137 008f 02       		.byte	2
+ 1138 0090 33       		.byte	51
+ 1139 0091 60       		.byte	96
+ 1140 0092 03       		.byte	3
+ 1141 0093 02       		.byte	2
+ 1142 0094 34       		.byte	52
+ 1143 0095 60       		.byte	96
+ 1144 0096 02       		.byte	2
+ 1145 0097 01       		.byte	1
+ 1146 0098 35       		.byte	53
+ 1147 0099 60       		.byte	96
+ 1148 009a 03       		.byte	3
+ 1149 009b 02       		.byte	2
+ 1150 009c 36       		.byte	54
+ 1151 009d 60       		.byte	96
+ 1152 009e 03       		.byte	3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 34
+
+
+ 1153 009f 02       		.byte	2
+ 1154 00a0 37       		.byte	55
+ 1155 00a1 60       		.byte	96
+ 1156 00a2 03       		.byte	3
+ 1157 00a3 02       		.byte	2
+ 1158 00a4 38       		.byte	56
+ 1159 00a5 60       		.byte	96
+ 1160 00a6 03       		.byte	3
+ 1161 00a7 02       		.byte	2
+ 1162 00a8 39       		.byte	57
+ 1163 00a9 60       		.byte	96
+ 1164 00aa 03       		.byte	3
+ 1165 00ab 02       		.byte	2
+ 1166 00ac 3A       		.byte	58
+ 1167 00ad 60       		.byte	96
+ 1168 00ae 02       		.byte	2
+ 1169 00af 01       		.byte	1
+ 1170 00b0 3B       		.byte	59
+ 1171 00b1 60       		.byte	96
+ 1172 00b2 03       		.byte	3
+ 1173 00b3 02       		.byte	2
+ 1174 00b4 3C       		.byte	60
+ 1175 00b5 60       		.byte	96
+ 1176 00b6 03       		.byte	3
+ 1177 00b7 02       		.byte	2
+ 1178 00b8 3D       		.byte	61
+ 1179 00b9 60       		.byte	96
+ 1180 00ba 02       		.byte	2
+ 1181 00bb 01       		.byte	1
+ 1182 00bc 3E       		.byte	62
+ 1183 00bd 60       		.byte	96
+ 1184 00be 03       		.byte	3
+ 1185 00bf 02       		.byte	2
+ 1186 00c0 3F       		.byte	63
+ 1187 00c1 60       		.byte	96
+ 1188 00c2 03       		.byte	3
+ 1189 00c3 02       		.byte	2
+ 1190 00c4 40       		.byte	64
+ 1191 00c5 60       		.byte	96
+ 1192 00c6 03       		.byte	3
+ 1193 00c7 02       		.byte	2
+ 1194 00c8 41       		.byte	65
+ 1195 00c9 60       		.byte	96
+ 1196 00ca 02       		.byte	2
+ 1197 00cb 01       		.byte	1
+ 1198 00cc 42       		.byte	66
+ 1199 00cd 60       		.byte	96
+ 1200 00ce 03       		.byte	3
+ 1201 00cf 02       		.byte	2
+ 1202 00d0 43       		.byte	67
+ 1203 00d1 60       		.byte	96
+ 1204 00d2 03       		.byte	3
+ 1205 00d3 02       		.byte	2
+ 1206 00d4 44       		.byte	68
+ 1207 00d5 60       		.byte	96
+ 1208 00d6 03       		.byte	3
+ 1209 00d7 02       		.byte	2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 35
+
+
+ 1210 00d8 45       		.byte	69
+ 1211 00d9 60       		.byte	96
+ 1212 00da 03       		.byte	3
+ 1213 00db 02       		.byte	2
+ 1214 00dc 46       		.byte	70
+ 1215 00dd 60       		.byte	96
+ 1216 00de 02       		.byte	2
+ 1217 00df 01       		.byte	1
+ 1218 00e0 47       		.byte	71
+ 1219 00e1 60       		.byte	96
+ 1220 00e2 03       		.byte	3
+ 1221 00e3 02       		.byte	2
+ 1222 00e4 48       		.byte	72
+ 1223 00e5 60       		.byte	96
+ 1224 00e6 03       		.byte	3
+ 1225 00e7 02       		.byte	2
+ 1226 00e8 49       		.byte	73
+ 1227 00e9 60       		.byte	96
+ 1228 00ea 02       		.byte	2
+ 1229 00eb 01       		.byte	1
+ 1230 00ec 4A       		.byte	74
+ 1231 00ed 60       		.byte	96
+ 1232 00ee 03       		.byte	3
+ 1233 00ef 02       		.byte	2
+ 1234 00f0 4B       		.byte	75
+ 1235 00f1 60       		.byte	96
+ 1236 00f2 03       		.byte	3
+ 1237 00f3 02       		.byte	2
+ 1238 00f4 4C       		.byte	76
+ 1239 00f5 60       		.byte	96
+ 1240 00f6 02       		.byte	2
+ 1241 00f7 01       		.byte	1
+ 1242 00f8 4F       		.byte	79
+ 1243 00f9 60       		.byte	96
+ 1244 00fa 03       		.byte	3
+ 1245 00fb 02       		.byte	2
+ 1246 00fc 50       		.byte	80
+ 1247 00fd 60       		.byte	96
+ 1248 00fe 02       		.byte	2
+ 1249 00ff 01       		.byte	1
+ 1250 0100 51       		.byte	81
+ 1251 0101 60       		.byte	96
+ 1252 0102 03       		.byte	3
+ 1253 0103 02       		.byte	2
+ 1254 0104 52       		.byte	82
+ 1255 0105 60       		.byte	96
+ 1256 0106 03       		.byte	3
+ 1257 0107 02       		.byte	2
+ 1258 0108 53       		.byte	83
+ 1259 0109 60       		.byte	96
+ 1260 010a 03       		.byte	3
+ 1261 010b 02       		.byte	2
+ 1262 010c 54       		.byte	84
+ 1263 010d 60       		.byte	96
+ 1264 010e 02       		.byte	2
+ 1265 010f 01       		.byte	1
+ 1266 0110 55       		.byte	85
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 36
+
+
+ 1267 0111 60       		.byte	96
+ 1268 0112 03       		.byte	3
+ 1269 0113 02       		.byte	2
+ 1270 0114 56       		.byte	86
+ 1271 0115 60       		.byte	96
+ 1272 0116 02       		.byte	2
+ 1273 0117 01       		.byte	1
+ 1274 0118 57       		.byte	87
+ 1275 0119 60       		.byte	96
+ 1276 011a 03       		.byte	3
+ 1277 011b 02       		.byte	2
+ 1278 011c 58       		.byte	88
+ 1279 011d 60       		.byte	96
+ 1280 011e 03       		.byte	3
+ 1281 011f 02       		.byte	2
+ 1282 0120 59       		.byte	89
+ 1283 0121 60       		.byte	96
+ 1284 0122 03       		.byte	3
+ 1285 0123 02       		.byte	2
+ 1286 0124 5A       		.byte	90
+ 1287 0125 60       		.byte	96
+ 1288 0126 02       		.byte	2
+ 1289 0127 01       		.byte	1
+ 1290 0128 5B       		.byte	91
+ 1291 0129 60       		.byte	96
+ 1292 012a 03       		.byte	3
+ 1293 012b 02       		.byte	2
+ 1294 012c 5C       		.byte	92
+ 1295 012d 60       		.byte	96
+ 1296 012e 02       		.byte	2
+ 1297 012f 01       		.byte	1
+ 1298 0130 5D       		.byte	93
+ 1299 0131 60       		.byte	96
+ 1300 0132 03       		.byte	3
+ 1301 0133 02       		.byte	2
+ 1302 0134 5E       		.byte	94
+ 1303 0135 60       		.byte	96
+ 1304 0136 03       		.byte	3
+ 1305 0137 02       		.byte	2
+ 1306 0138 5F       		.byte	95
+ 1307 0139 60       		.byte	96
+ 1308 013a 03       		.byte	3
+ 1309 013b 02       		.byte	2
+ 1310 013c 60       		.byte	96
+ 1311 013d 60       		.byte	96
+ 1312 013e 03       		.byte	3
+ 1313 013f 02       		.byte	2
+ 1314 0140 61       		.byte	97
+ 1315 0141 60       		.byte	96
+ 1316 0142 03       		.byte	3
+ 1317 0143 02       		.byte	2
+ 1318 0144 62       		.byte	98
+ 1319 0145 60       		.byte	96
+ 1320 0146 03       		.byte	3
+ 1321 0147 02       		.byte	2
+ 1322 0148 63       		.byte	99
+ 1323 0149 60       		.byte	96
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 37
+
+
+ 1324 014a 02       		.byte	2
+ 1325 014b 01       		.byte	1
+ 1326 014c 64       		.byte	100
+ 1327 014d 60       		.byte	96
+ 1328 014e 03       		.byte	3
+ 1329 014f 02       		.byte	2
+ 1330 0150 65       		.byte	101
+ 1331 0151 60       		.byte	96
+ 1332 0152 03       		.byte	3
+ 1333 0153 02       		.byte	2
+ 1334 0154 66       		.byte	102
+ 1335 0155 60       		.byte	96
+ 1336 0156 03       		.byte	3
+ 1337 0157 02       		.byte	2
+ 1338 0158 68       		.byte	104
+ 1339 0159 60       		.byte	96
+ 1340 015a 03       		.byte	3
+ 1341 015b 02       		.byte	2
+ 1342 015c 69       		.byte	105
+ 1343 015d 60       		.byte	96
+ 1344 015e 02       		.byte	2
+ 1345 015f 01       		.byte	1
+ 1346 0160 6A       		.byte	106
+ 1347 0161 60       		.byte	96
+ 1348 0162 03       		.byte	3
+ 1349 0163 02       		.byte	2
+ 1350 0164 6B       		.byte	107
+ 1351 0165 60       		.byte	96
+ 1352 0166 03       		.byte	3
+ 1353 0167 02       		.byte	2
+ 1354 0168 78       		.byte	120
+ 1355 0169 60       		.byte	96
+ 1356 016a 02       		.byte	2
+ 1357 016b 01       		.byte	1
+ 1358 016c 79       		.byte	121
+ 1359 016d 60       		.byte	96
+ 1360 016e 03       		.byte	3
+ 1361 016f 02       		.byte	2
+ 1362 0170 7A       		.byte	122
+ 1363 0171 20       		.byte	32
+ 1364 0172 01       		.byte	1
+ 1365 0173 01       		.byte	1
+ 1366 0174 7B       		.byte	123
+ 1367 0175 20       		.byte	32
+ 1368 0176 01       		.byte	1
+ 1369 0177 01       		.byte	1
+ 1370 0178 7C       		.byte	124
+ 1371 0179 20       		.byte	32
+ 1372 017a 01       		.byte	1
+ 1373 017b 01       		.byte	1
+ 1374 017c 7D       		.byte	125
+ 1375 017d 20       		.byte	32
+ 1376 017e 01       		.byte	1
+ 1377 017f 01       		.byte	1
+ 1378 0180 7E       		.byte	126
+ 1379 0181 20       		.byte	32
+ 1380 0182 01       		.byte	1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 38
+
+
+ 1381 0183 01       		.byte	1
+ 1382 0184 7F       		.byte	127
+ 1383 0185 20       		.byte	32
+ 1384 0186 01       		.byte	1
+ 1385 0187 01       		.byte	1
+ 1386 0188 80       		.byte	-128
+ 1387 0189 20       		.byte	32
+ 1388 018a 01       		.byte	1
+ 1389 018b 01       		.byte	1
+ 1390 018c 81       		.byte	-127
+ 1391 018d 20       		.byte	32
+ 1392 018e 01       		.byte	1
+ 1393 018f 01       		.byte	1
+ 1394 0190 82       		.byte	-126
+ 1395 0191 20       		.byte	32
+ 1396 0192 01       		.byte	1
+ 1397 0193 01       		.byte	1
+ 1398 0194 83       		.byte	-125
+ 1399 0195 20       		.byte	32
+ 1400 0196 01       		.byte	1
+ 1401 0197 04       		.byte	4
+ 1402 0198 84       		.byte	-124
+ 1403 0199 20       		.byte	32
+ 1404 019a 01       		.byte	1
+ 1405 019b 04       		.byte	4
+ 1406 019c 85       		.byte	-123
+ 1407 019d 60       		.byte	96
+ 1408 019e 03       		.byte	3
+ 1409 019f 02       		.byte	2
+ 1410 01a0 86       		.byte	-122
+ 1411 01a1 30       		.byte	48
+ 1412 01a2 01       		.byte	1
+ 1413 01a3 06       		.byte	6
+ 1414 01a4 87       		.byte	-121
+ 1415 01a5 30       		.byte	48
+ 1416 01a6 01       		.byte	1
+ 1417 01a7 06       		.byte	6
+ 1418 01a8 88       		.byte	-120
+ 1419 01a9 20       		.byte	32
+ 1420 01aa 01       		.byte	1
+ 1421 01ab 02       		.byte	2
+ 1422 01ac 89       		.byte	-119
+ 1423 01ad 20       		.byte	32
+ 1424 01ae 01       		.byte	1
+ 1425 01af 02       		.byte	2
+ 1426 01b0 8A       		.byte	-118
+ 1427 01b1 20       		.byte	32
+ 1428 01b2 01       		.byte	1
+ 1429 01b3 02       		.byte	2
+ 1430 01b4 8B       		.byte	-117
+ 1431 01b5 20       		.byte	32
+ 1432 01b6 01       		.byte	1
+ 1433 01b7 02       		.byte	2
+ 1434 01b8 8C       		.byte	-116
+ 1435 01b9 20       		.byte	32
+ 1436 01ba 01       		.byte	1
+ 1437 01bb 02       		.byte	2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 39
+
+
+ 1438 01bc 8D       		.byte	-115
+ 1439 01bd 20       		.byte	32
+ 1440 01be 01       		.byte	1
+ 1441 01bf 02       		.byte	2
+ 1442 01c0 8E       		.byte	-114
+ 1443 01c1 20       		.byte	32
+ 1444 01c2 01       		.byte	1
+ 1445 01c3 02       		.byte	2
+ 1446 01c4 8F       		.byte	-113
+ 1447 01c5 20       		.byte	32
+ 1448 01c6 01       		.byte	1
+ 1449 01c7 02       		.byte	2
+ 1450 01c8 90       		.byte	-112
+ 1451 01c9 20       		.byte	32
+ 1452 01ca 01       		.byte	1
+ 1453 01cb 02       		.byte	2
+ 1454 01cc 91       		.byte	-111
+ 1455 01cd 20       		.byte	32
+ 1456 01ce 01       		.byte	1
+ 1457 01cf 02       		.byte	2
+ 1458 01d0 92       		.byte	-110
+ 1459 01d1 20       		.byte	32
+ 1460 01d2 01       		.byte	1
+ 1461 01d3 02       		.byte	2
+ 1462 01d4 93       		.byte	-109
+ 1463 01d5 20       		.byte	32
+ 1464 01d6 01       		.byte	1
+ 1465 01d7 02       		.byte	2
+ 1466 01d8 94       		.byte	-108
+ 1467 01d9 20       		.byte	32
+ 1468 01da 01       		.byte	1
+ 1469 01db 02       		.byte	2
+ 1470 01dc 95       		.byte	-107
+ 1471 01dd 20       		.byte	32
+ 1472 01de 01       		.byte	1
+ 1473 01df 02       		.byte	2
+ 1474 01e0 96       		.byte	-106
+ 1475 01e1 20       		.byte	32
+ 1476 01e2 01       		.byte	1
+ 1477 01e3 02       		.byte	2
+ 1478 01e4 97       		.byte	-105
+ 1479 01e5 20       		.byte	32
+ 1480 01e6 01       		.byte	1
+ 1481 01e7 02       		.byte	2
+ 1482 01e8 98       		.byte	-104
+ 1483 01e9 20       		.byte	32
+ 1484 01ea 01       		.byte	1
+ 1485 01eb 01       		.byte	1
+ 1486 01ec 99       		.byte	-103
+ 1487 01ed 70       		.byte	112
+ 1488 01ee 01       		.byte	1
+ 1489 01ef 01       		.byte	1
+ 1490 01f0 9A       		.byte	-102
+ 1491 01f1 70       		.byte	112
+ 1492 01f2 01       		.byte	1
+ 1493 01f3 01       		.byte	1
+ 1494 01f4 9B       		.byte	-101
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 40
+
+
+ 1495 01f5 70       		.byte	112
+ 1496 01f6 01       		.byte	1
+ 1497 01f7 01       		.byte	1
+ 1498 01f8 9C       		.byte	-100
+ 1499 01f9 70       		.byte	112
+ 1500 01fa 01       		.byte	1
+ 1501 01fb 01       		.byte	1
+ 1502 01fc 9D       		.byte	-99
+ 1503 01fd 70       		.byte	112
+ 1504 01fe 01       		.byte	1
+ 1505 01ff 01       		.byte	1
+ 1506 0200 9E       		.byte	-98
+ 1507 0201 70       		.byte	112
+ 1508 0202 01       		.byte	1
+ 1509 0203 01       		.byte	1
+ 1510 0204 9F       		.byte	-97
+ 1511 0205 30       		.byte	48
+ 1512 0206 01       		.byte	1
+ 1513 0207 02       		.byte	2
+ 1514 0208 A0       		.byte	-96
+ 1515 0209 20       		.byte	32
+ 1516 020a 01       		.byte	1
+ 1517 020b 02       		.byte	2
+ 1518 020c A1       		.byte	-95
+ 1519 020d 20       		.byte	32
+ 1520 020e 01       		.byte	1
+ 1521 020f 02       		.byte	2
+ 1522 0210 A2       		.byte	-94
+ 1523 0211 20       		.byte	32
+ 1524 0212 01       		.byte	1
+ 1525 0213 02       		.byte	2
+ 1526 0214 A3       		.byte	-93
+ 1527 0215 20       		.byte	32
+ 1528 0216 01       		.byte	1
+ 1529 0217 02       		.byte	2
+ 1530 0218 A4       		.byte	-92
+ 1531 0219 20       		.byte	32
+ 1532 021a 01       		.byte	1
+ 1533 021b 02       		.byte	2
+ 1534 021c A5       		.byte	-91
+ 1535 021d 20       		.byte	32
+ 1536 021e 01       		.byte	1
+ 1537 021f 02       		.byte	2
+ 1538 0220 A6       		.byte	-90
+ 1539 0221 20       		.byte	32
+ 1540 0222 01       		.byte	1
+ 1541 0223 02       		.byte	2
+ 1542 0224 A7       		.byte	-89
+ 1543 0225 20       		.byte	32
+ 1544 0226 01       		.byte	1
+ 1545 0227 02       		.byte	2
+ 1546 0228 A8       		.byte	-88
+ 1547 0229 20       		.byte	32
+ 1548 022a 01       		.byte	1
+ 1549 022b 02       		.byte	2
+ 1550 022c A9       		.byte	-87
+ 1551 022d 20       		.byte	32
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 41
+
+
+ 1552 022e 01       		.byte	1
+ 1553 022f 02       		.byte	2
+ 1554 0230 AA       		.byte	-86
+ 1555 0231 70       		.byte	112
+ 1556 0232 0F       		.byte	15
+ 1557 0233 0E       		.byte	14
+ 1558 0234 AB       		.byte	-85
+ 1559 0235 70       		.byte	112
+ 1560 0236 0F       		.byte	15
+ 1561 0237 0E       		.byte	14
+ 1562 0238 AC       		.byte	-84
+ 1563 0239 20       		.byte	32
+ 1564 023a 01       		.byte	1
+ 1565 023b 01       		.byte	1
+ 1566 023c AD       		.byte	-83
+ 1567 023d 30       		.byte	48
+ 1568 023e 01       		.byte	1
+ 1569 023f 02       		.byte	2
+ 1570 0240 AE       		.byte	-82
+ 1571 0241 30       		.byte	48
+ 1572 0242 01       		.byte	1
+ 1573 0243 02       		.byte	2
+ 1574 0244 B0       		.byte	-80
+ 1575 0245 70       		.byte	112
+ 1576 0246 01       		.byte	1
+ 1577 0247 01       		.byte	1
+ 1578 0248 B1       		.byte	-79
+ 1579 0249 70       		.byte	112
+ 1580 024a 01       		.byte	1
+ 1581 024b 01       		.byte	1
+ 1582 024c B2       		.byte	-78
+ 1583 024d 70       		.byte	112
+ 1584 024e 01       		.byte	1
+ 1585 024f 01       		.byte	1
+ 1586 0250 B3       		.byte	-77
+ 1587 0251 70       		.byte	112
+ 1588 0252 01       		.byte	1
+ 1589 0253 01       		.byte	1
+ 1590 0254 B4       		.byte	-76
+ 1591 0255 70       		.byte	112
+ 1592 0256 01       		.byte	1
+ 1593 0257 01       		.byte	1
+ 1594 0258 B5       		.byte	-75
+ 1595 0259 70       		.byte	112
+ 1596 025a 01       		.byte	1
+ 1597 025b 01       		.byte	1
+ 1598 025c B6       		.byte	-74
+ 1599 025d 70       		.byte	112
+ 1600 025e 01       		.byte	1
+ 1601 025f 01       		.byte	1
+ 1602 0260 B7       		.byte	-73
+ 1603 0261 70       		.byte	112
+ 1604 0262 01       		.byte	1
+ 1605 0263 01       		.byte	1
+ 1606 0264 B8       		.byte	-72
+ 1607 0265 70       		.byte	112
+ 1608 0266 01       		.byte	1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 42
+
+
+ 1609 0267 01       		.byte	1
+ 1610 0268 B9       		.byte	-71
+ 1611 0269 70       		.byte	112
+ 1612 026a 01       		.byte	1
+ 1613 026b 01       		.byte	1
+ 1614 026c BA       		.byte	-70
+ 1615 026d 70       		.byte	112
+ 1616 026e 01       		.byte	1
+ 1617 026f 01       		.byte	1
+ 1618 0270 BB       		.byte	-69
+ 1619 0271 70       		.byte	112
+ 1620 0272 01       		.byte	1
+ 1621 0273 01       		.byte	1
+ 1622 0274 BC       		.byte	-68
+ 1623 0275 70       		.byte	112
+ 1624 0276 01       		.byte	1
+ 1625 0277 01       		.byte	1
+ 1626 0278 BD       		.byte	-67
+ 1627 0279 70       		.byte	112
+ 1628 027a 01       		.byte	1
+ 1629 027b 01       		.byte	1
+ 1630 027c BE       		.byte	-66
+ 1631 027d 70       		.byte	112
+ 1632 027e 01       		.byte	1
+ 1633 027f 01       		.byte	1
+ 1634 0280 BF       		.byte	-65
+ 1635 0281 70       		.byte	112
+ 1636 0282 01       		.byte	1
+ 1637 0283 01       		.byte	1
+ 1638 0284 C0       		.byte	-64
+ 1639 0285 60       		.byte	96
+ 1640 0286 03       		.byte	3
+ 1641 0287 02       		.byte	2
+ 1642 0288 C1       		.byte	-63
+ 1643 0289 60       		.byte	96
+ 1644 028a 03       		.byte	3
+ 1645 028b 02       		.byte	2
+ 1646 028c C2       		.byte	-62
+ 1647 028d 60       		.byte	96
+ 1648 028e 03       		.byte	3
+ 1649 028f 02       		.byte	2
+ 1650              		.text
+ 1651              	.Letext0:
+ 1652              		.file 2 "c:\\users\\daniel\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
+ 1653              		.file 3 "c:\\users\\daniel\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
+ 1654              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f042x6.h"
+ 1655              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 1656              		.file 6 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_smbus.h"
+ 1657              		.file 7 "Middlewares/ST/STM32_SMBus_Stack/inc/stm32_SMBUS_stack.h"
+ 1658              		.file 8 "Middlewares/ST/STM32_SMBus_Stack/inc/stm32_PMBUS_stack.h"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s 			page 43
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32_PMBUS_stack.c
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:19     .text.STACK_PMBUS_HostCommandGroup:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:25     .text.STACK_PMBUS_HostCommandGroup:00000000 STACK_PMBUS_HostCommandGroup
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:220    .text.STACK_SMBUS_LocateCommand:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:226    .text.STACK_SMBUS_LocateCommand:00000000 STACK_SMBUS_LocateCommand
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:325    .text.STACK_SMBUS_LocateCommand:0000003c $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:893    .rodata.EXTENDED_READ_BYTE:00000000 EXTENDED_READ_BYTE
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:330    .text.STACK_PMBUS_MasterZoneWrite:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:336    .text.STACK_PMBUS_MasterZoneWrite:00000000 STACK_PMBUS_MasterZoneWrite
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:527    .text.STACK_PMBUS_MasterZoneConfig:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:533    .text.STACK_PMBUS_MasterZoneConfig:00000000 STACK_PMBUS_MasterZoneConfig
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:574    .text.STACK_PMBUS_MasterZoneConfig:0000001c $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:993    .rodata.PMBUS_COMMANDS_TAB:00000000 PMBUS_COMMANDS_TAB
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:579    .text.STACK_PMBUS_MasterZoneActive:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:585    .text.STACK_PMBUS_MasterZoneActive:00000000 STACK_PMBUS_MasterZoneActive
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:624    .text.STACK_PMBUS_MasterZoneActive:0000001c $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:629    .text.STACK_PMBUS_MasterReadZoneStatus:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:635    .text.STACK_PMBUS_MasterReadZoneStatus:00000000 STACK_PMBUS_MasterReadZoneStatus
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:741    .text.STACK_PMBUS_MasterZoneReadStatusCont:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:747    .text.STACK_PMBUS_MasterZoneReadStatusCont:00000000 STACK_PMBUS_MasterZoneReadStatusCont
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:801    .text.STACK_PMBUS_MasterZoneReadStatusCont:0000002c $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:806    .text.STACK_PMBUS_ZoneReadCallback:00000000 $t
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:812    .text.STACK_PMBUS_ZoneReadCallback:00000000 STACK_PMBUS_ZoneReadCallback
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:853    .rodata.ZONE_READ_COMMAND:00000000 ZONE_READ_COMMAND
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:850    .rodata.ZONE_READ_COMMAND:00000000 $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:863    .rodata.EXTENDED_WRITE_WORD:00000000 EXTENDED_WRITE_WORD
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:860    .rodata.EXTENDED_WRITE_WORD:00000000 $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:873    .rodata.EXTENDED_WRITE_BYTE:00000000 EXTENDED_WRITE_BYTE
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:870    .rodata.EXTENDED_WRITE_BYTE:00000000 $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:883    .rodata.EXTENDED_READ_WORD:00000000 EXTENDED_READ_WORD
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:880    .rodata.EXTENDED_READ_WORD:00000000 $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:890    .rodata.EXTENDED_READ_BYTE:00000000 $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:903    .rodata.PMBUS_COMMANDS_TEST:00000000 PMBUS_COMMANDS_TEST
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:900    .rodata.PMBUS_COMMANDS_TEST:00000000 $d
+C:\Users\Daniel\AppData\Local\Temp\ccXDH4hp.s:990    .rodata.PMBUS_COMMANDS_TAB:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_SMBUS_DisableListen_IT
+HAL_SMBUS_Master_Transmit_IT
+STACK_SMBUS_HostCommand
+HAL_SMBUS_Master_Receive_IT
