@@ -59,6 +59,23 @@
     )
   )
 
+  (sheet (at 114.935 80.645) (size 57.785 32.385) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid d5426dec-ef36-4cdb-a241-dd8a080f894c)
+    (property "Sheetname" "mounting_holes" (at 114.935 79.9334 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "mounting_holes.kicad_sch" (at 114.935 113.6146 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battery_charging_devboard"
+        (path "/451b7129-01d5-46cf-a4e9-c4e0c27ff0b6" (page "5"))
+      )
+    )
+  )
+
   (sheet_instances
     (path "/" (page "1"))
   )

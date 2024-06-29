@@ -45,7 +45,7 @@
         "silk_text_thickness": 0.09999999999999999,
         "silk_text_upright": true,
         "zones": {
-          "min_clearance": 0.25
+          "min_clearance": 0.3
         }
       },
       "diff_pair_dimensions": [
@@ -460,7 +460,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 0,
+    "annotate_start_num": 299,
     "drawing": {
       "dashed_lines_dash_length_ratio": 12.0,
       "dashed_lines_gap_length_ratio": 3.0,
@@ -509,6 +509,10 @@
     [
       "1280b247-77a5-41dc-aedd-06ed6191fea4",
       "microcontroller"
+    ],
+    [
+      "d5426dec-ef36-4cdb-a241-dd8a080f894c",
+      "mounting_holes"
     ]
   ],
   "text_variables": {}
